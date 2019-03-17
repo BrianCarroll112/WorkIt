@@ -29,7 +29,7 @@ A section clearly defining MVP and POST MVP.
 
 ## ERD
 
-![ERD](https://imgur.com/a/CC9dEOh#ojOMZdd)
+![ERD](https://i.imgur.com/ojOMZdd.jpg)
 
 ## API Endpoint Documentation
 
