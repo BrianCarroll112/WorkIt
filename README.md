@@ -34,7 +34,7 @@ A section clearly defining MVP and POST MVP.
 ## API Endpoint Documentation
 
 POST /users
-⋅⋅⋅ Request: User Object
+... Request: User Object
 ⋅⋅⋅ Response: User Object
 
 GET /users/:id
