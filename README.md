@@ -29,10 +29,7 @@ A section clearly defining MVP and POST MVP.
 
 ## ERD
 
-Entity Relationship Diagram (ERD) diagram of the database tables, schemas, and relations. You can draw them by hand or try on of these useful links for ERDs:
-lucidchart This is a great tool for building ERDs.
-draw.io Another great tool for ERDs.
-ERDPlus Yet another great tool for ERDS.
+![ERD](https://ga-students.slack.com/files/UF7QX8LGZ/FH30FAVU6/image_from_ios.jpg)
 
 ## API Endpoint Documentation
 
