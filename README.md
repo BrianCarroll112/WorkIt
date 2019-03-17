@@ -16,7 +16,7 @@ A section clearly defining MVP and POST MVP.
 
 - User Login
 - User Register
-- Edit Profile
+- Edit Profile - Inline edits
 - Upload CV and images drag/drop
 - Add Desired Job Titles
 - View list of job postings
