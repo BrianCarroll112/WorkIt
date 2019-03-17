@@ -17,6 +17,7 @@ A section clearly defining MVP and POST MVP.
 - User Login
 - User Register
 - Edit Profile
+- Upload CV and images drag/drop
 - Add Desired Job Titles
 - View list of job postings
 - View jobs by Job Title
@@ -24,16 +25,45 @@ A section clearly defining MVP and POST MVP.
 - Apply to job
 - View list of companies
 - View company profile and available jobs
-- Vouch for other users ** post MVP
-
+- Vouch for other users
 
 ## ERD
 
-![ERD](https://imgur.com/CC9dEOh.jpg)
+![ERD](https://i.imgur.com/CC9dEOh.jpg)
 
 ## API Endpoint Documentation
 
-API Endpoint Documentations list of all of your servers routes, the structure of requests that you expect and the structure of responses they send.
+POST /users
+.. Request: User Object
+.. Response: User Object
+
+GET /users/:id
+.. Response: User data object of requested user id
+
+PUT /users/:id
+.. Request: User Object
+.. Response: User Object
+
+DELETE /users/:id
+.. Request: id integer to delete
+.. Response: success message JSON
+
+POST /login
+.. Request: Email/Password Object
+.. Response: Token String
+
+GET /jobs
+.. Response: Array of job objects
+
+GET /companies
+.. Response: Array of company objects
+
+Get /companies/:id
+.. Response: Company object
+
+Post-MVP
+.. Add C(R)UD functionality for companies to login and C(R)UD jobs
+
 
 ## Wireframes
 
