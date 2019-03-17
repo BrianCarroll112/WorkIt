@@ -1,16 +1,24 @@
 # WorkIt
 
 ## Project Description
-A brief explanation of the project you'll be building with the objective described in non-technical language.
+
+WorkIt is a job search app for the tech industry. Users may register/login and browse recent job posts. A user may view more information on both the job or the company hiring. Additionally, a user may view other users' profiles and 'vouch' for them.
 
 ## Challenges
-An explanation of the major challenges you expect to face while building this app and how you foresee your team solving them.
+
+- Editing Functionality
+- Vouching Many-to-Many
 
 ## MVP
 
+- Register/Login
+- Profile 
+- View Jobs/companies
+
 ## Post-MVP
 
-A section clearly defining MVP and POST MVP.
+- Vouching
+- Company login / post jobs
 
 ## Feature List
 
@@ -88,4 +96,4 @@ Wireframes sketches of the user interface with notes of how the user will intera
 
 ## Dependencies
 
-List Dependencies link to any project dependencies (e.g. 3rd party APIs, libraries, linter, etc).
+- TBD
