@@ -31,7 +31,7 @@ API Endpoint Documentations list of all of your servers routes, the structure of
 
 Wireframes sketches of the user interface with notes of how the user will interact with the UI.
 
-## Component Heirarchy
+## Component Hierarchy
 
 ![Component Heirarchy](https://i.imgur.com/nQnJwCO.jpg) 
 
