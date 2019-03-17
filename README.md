@@ -34,34 +34,43 @@ A section clearly defining MVP and POST MVP.
 ## API Endpoint Documentation
 
 - POST /users
+
 ⋅⋅⋅ Request: User Object
 ⋅⋅⋅ Response: User Object
 
 - GET /users/:id
+
 ⋅⋅⋅ Response: User data object of requested user id
 
 - PUT /users/:id
+
 ⋅⋅⋅ Request: User Object
 ⋅⋅⋅ Response: User Object
 
 - DELETE /users/:id
+
 ⋅⋅⋅ Request: id integer to delete
 ⋅⋅⋅ Response: success message JSON
 
 - POST /login
+
 ⋅⋅⋅ Request: Email/Password Object
 ⋅⋅⋅ Response: Token String
 
 - GET /jobs
+
 ⋅⋅⋅ Response: Array of job objects
 
 - GET /companies
+
 ⋅⋅⋅ Response: Array of company objects
 
 - Get /companies/:id
+
 ⋅⋅⋅ Response: Company object
 
 - Post-MVP
+
 ⋅⋅⋅ Add C(R)UD functionality for companies to login and C(R)UD jobs
 
 
