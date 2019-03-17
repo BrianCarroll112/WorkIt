@@ -33,7 +33,7 @@ Wireframes sketches of the user interface with notes of how the user will intera
 
 ## Component Heirarchy
 
-Component Heirarchy Wireframes should be broken into components which then should be described in a component heirarchy.
+![Component Heirarchy](https://i.imgur.com/nQnJwCO.jpg) 
 
 ## Dependencies
 
