@@ -14,7 +14,18 @@ A section clearly defining MVP and POST MVP.
 
 ## Feature List
 
-Feature List List of pieces of functionality of the app. These will go into the trello board.
+- User Login
+- User Register
+- Edit Profile
+- Add Desired Job Titles
+- View list of job postings
+- View jobs by Job Title
+- View job post
+- Apply to job
+- View list of companies
+- View company profile and available jobs
+- Vouch for other users ** post MVP
+
 
 ## ERD
 
@@ -33,7 +44,7 @@ Wireframes sketches of the user interface with notes of how the user will intera
 
 ## Component Hierarchy
 
-![Component Heirarchy](https://i.imgur.com/nQnJwCO.jpg) 
+![Component Heirarchy](https://i.imgur.com/nQnJwCO.jpg)
 
 ## Dependencies
 
