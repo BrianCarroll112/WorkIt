@@ -12,7 +12,9 @@ const {
   companyRouter
 } = require('./routes/companyRouter');
 const {
-  User , Job , Company
+  User,
+  Job,
+  Company
 } = require('./models');
 
 const PORT = process.env.port || 3001;
