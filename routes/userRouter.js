@@ -57,7 +57,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
 
         const user = await User.create(newUser);
 
-        const token = await encode(userData.dataValues);
+        const token = await encode(user.dataValues);
         res.json({
           token
         });
