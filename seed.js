@@ -1,4 +1,7 @@
-const { Company, Job } = require('./models');
+const {
+  Company,
+  Job
+} = require('./models');
 
 const seed = async () => {
   try {
@@ -124,8 +127,8 @@ const seed = async () => {
     await company5.setJobs([job5, job9]);
 
     process.exit();
-    
-  } catch(e) {
+
+  } catch (e) {
     console.error(e);
   }
 }

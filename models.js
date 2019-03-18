@@ -8,7 +8,6 @@ const sequelize = new Sequelize({
     returning: true
   }
 });
-
 const User = sequelize.define('user', {
   email: Sequelize.STRING,
   password_digest: Sequelize.STRING,
