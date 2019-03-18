@@ -18,12 +18,7 @@ jobsRouter.get('/:id', restrict, async (req, res) => {
   try {
     const id = req.params.id;
     const job = await Job.findByPk(id);
-
-    if (job.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('Unauthorized');
-
-    } else {
-      res.json(job)
+    res.json(job)
     }
   } catch (e) {
     res.status(error).send(e.message);
@@ -34,12 +29,7 @@ jobsRouter.get('/:id', restrict, async (req, res) => {
 jobsRouter.get('/', restrict, async (req, res) => {
   try {
     const jobs = await Job.findAll();
-
-    if (jobs.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('Unauthorized');
-
-    } else {
-      res.json(jobs)
+    res.json(jobs)
     }
   } catch (e) {
     res.status(error).send(e.message);
