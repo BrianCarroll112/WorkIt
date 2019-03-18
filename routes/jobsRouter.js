@@ -19,7 +19,6 @@ jobsRouter.get('/:id', restrict, async (req, res) => {
     const id = req.params.id;
     const job = await Job.findByPk(id);
     res.json(job)
-    }
   } catch (e) {
     res.status(error).send(e.message);
   }
@@ -30,7 +29,6 @@ jobsRouter.get('/', restrict, async (req, res) => {
   try {
     const jobs = await Job.findAll();
     res.json(jobs)
-    }
   } catch (e) {
     res.status(error).send(e.message);
   }
