@@ -19,7 +19,6 @@ userRouter.use((req, res, next) => {
 
 //get user page
 userRouter.get('/:id', restrict, async (req, res) => {
-
       try {
         const id = req.params.id;
         const user = await User.findByPk(id);
@@ -59,43 +58,46 @@ userRouter.get('/:id', restrict, async (req, res) => {
         const user = await User.create(newUser);
 
         const token = await encode(user.dataValues);
-
         res.json({
           token
         });
+      } catch (e) {
+        console.log(e);
+        res.status(500).send(e.message);
       }
-    }
-  } catch (e) {
-    console.log(e);
-    res.status(401).send('Invalid Credentials');
-  }
-});
+    });
 
-//edit profile
-userRouter.put('/:id', restrict, async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const userProfil = await User.findByPk(id);
+    //login
+    userRouter.post('/login', async (req, res) => {
+      try {
+        const {
+          email,
+          password
+        } = req.body;
+        const user = await User.findOne({
+          where: {
+            email
+          }
+        });
 
-    if (userProfil.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('Unauthorized');
-
-    } else {
-      await userProfil.update(req.body);
-      res.json({
-        userProfil
-      })
-    }
-  } catch (e) {
-    next(e);
-  }
-});
-
-//delete profile
-userRouter.delete(':id', restrict, async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const userDelete = await User.findByPk(id);
+        if (user !== null) {
+          const authenticated = await compare(password, user.dataValues.password_digest);
+          if (authenticated == true) {
+            const userData = {
+              email: user.dataValues.email,
+              id: user.dataValues.id
+            };
+            const token = await encode(userData);
+            res.json({
+              token
+            });
+          }
+        }
+      } catch (e) {
+        console.log(e);
+        res.status(401).send('Invalid Credentials');
+      }
+    });
 
     //edit profile
     userRouter.put('/:id', restrict, async (req, res, next) => {
@@ -116,15 +118,25 @@ userRouter.delete(':id', restrict, async (req, res, next) => {
           }
         });
 
-    } else {
-      await userDelete.destroy();
-      res.json({
-        msg: 'ok, you have been deleted'
-      });
-    }
-  } catch (e) {
-    next(e);
-  }
-});
+      //delete profile
+      userRouter.delete(':id', restrict, async (req, res, next) => {
+        try {
+          const id = req.params.id;
+          const userDelete = await User.findByPk(id);
 
-module.exports = {userRouter};
+          if (userDelete.userId !== parseInt(res.locals.user.id)) {
+            res.status(401).send('This is not you!!');
+
+          } else {
+            await userDelete.destroy();
+            res.json({
+              msg: 'ok, you have been deleted'
+            });
+          }
+        } catch (e) {
+          next(e);
+        }
+      });
+
+
+      module.exports = {userRouter};
