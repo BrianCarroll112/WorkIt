@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './App.css';
-import { registerUser } from './services/apiHelpers'
+import { registerUser,
+         loginUser } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
