@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './App.css';
+import { registerUser } from './services/apiHelpers'
+
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import JobsList from './components/JobsList';
@@ -17,42 +19,66 @@ class App extends Component {
     this.state = {
       registerToken: '',
       registerFormData: {
+        email: '',
+        password: '',
         first_name: '',
         last_name:'',
-        email: '',
-        password: ''
+      },
+      loginData: {
+      email: '',
+      password: ''
       },
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
 
   }
 
   handleChange(e) {
-  const { name, value } = e.target;
-  this.setState(prevState => ({
-    registerFormData: {
-      ...prevState.formData,
-      [name]: value
-    },
-   }));
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      registerFormData: {
+        ...prevState.registerFormData,
+        [name]: value
+      },
+      loginData: {
+        ...prevState.loginData,
+        [name]: value
+      }
+    }));
   }
 
   async handleRegister(e) {
     e.preventDefault();
-    const data = await registerUser(this.state.registerFormData);
-    this.setState(prevState => ({
+    const data = await registerUser(this.state.registerFormData)
+    this.setState({
       registerFormData: {
-        first_name: '',
-        last_name:'',
         email: '',
-        password: ''
+        password: '',
+        first_name: '',
+        last_name:''
       },
       registerToken: data.token
-    }))
-  }
+    })
+    console.log(this.state.registerToken)
+    this.props.history.push('/profile');
+  };
 
+  async handleLogin(e) {
+    e.preventDefault();
+    const data = await loginUser(this.state.loginData)
+    data === undefined ? alert('Invalid Email or Password- try again') :
+      this.setState(prevState => ({
+      loginData: {
+        email: '',
+        password: '',
+      },
+      loginToken: data.token
+    }))
+    this.props.history.push('/profile');
+  }
 
   render() {
     return (
@@ -60,7 +86,14 @@ class App extends Component {
         <h1>Work it works</h1>
 
         <Route exact path="/" render={(props) => (
-          <LoginForm />
+          <LoginForm
+          {...props}
+          buttonText="Sign In"
+          handleChange={this.handleChange}
+          email={this.state.loginData.email}
+          password={this.state.loginData.password}
+          handleSubmit={this.handleLogin}
+          />
         )}/>
 
         <Route exact path="/register" render={(props) => (
@@ -68,10 +101,10 @@ class App extends Component {
           {...props}
           buttonText="Sign Up"
           handleChange={this.handleChange}
-          email={this.state.formData.email}
-          password={this.state.formData.password}
-          first_name={this.state.formData.first_name}
-          last_name={this.state.formData.last_name}
+          email={this.state.registerFormData.email}
+          password={this.state.registerFormData.password}
+          first_name={this.state.registerFormData.first_name}
+          last_name={this.state.registerFormData.last_name}
           handleSubmit={this.handleRegister}
           />
         )}/>
@@ -94,4 +127,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

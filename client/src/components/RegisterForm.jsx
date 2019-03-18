@@ -5,6 +5,24 @@ const RegisterForm = (props) => {
     <div>
       <div>Register Form</div>
       <form onSubmit={props.onSubmit}>
+      <label htmlFor="email">
+        Email:
+      </label>
+      <input
+        type="text"
+        onChange={props.handleChange}
+        id="email"
+        name="email"
+        value={props.email} />
+      <label htmlFor="password">
+        Password:
+      </label>
+      <input
+        type="text"
+        onChange={props.handleChange}
+        id="password"
+        name="password"
+        value={props.password} />
         <label htmlFor="first_name">
           First Name:
         </label>
@@ -23,24 +41,6 @@ const RegisterForm = (props) => {
           id="last_name"
           name="last_name"
           value={props.last_name} />
-        <label htmlFor="email">
-          Email:
-        </label>
-        <input
-          type="text"
-          onChange={props.handleChange}
-          id="email"
-          name="email"
-          value={props.email} />
-        <label htmlFor="password">
-          Password:
-        </label>
-        <input
-          type="text"
-          onChange={props.handleChange}
-          id="password"
-          name="password"
-          value={props.password} />
     </form>
     <button
       className='create'
