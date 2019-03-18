@@ -33,7 +33,7 @@ const Job = sequelize.define('job', {
   location: Sequelize.STRING,
 });
 
-// const Vouch = sequelize.define('food', {
+// const Vouch = sequelize.define('vouch', {
 // post-mvp
 // });
 

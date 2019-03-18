@@ -49,27 +49,17 @@ userRouter.get('/:id', restrict, async (req, res) => {
           password_digest,
           first_name,
           last_name,
-        }
-
-        const user = await User.create(newUser);
-
-        const userData = {
-          email: user.email,
-          first_name: user.first_name,
-          last_name: user.last_name,
           profile_pic: 'Add a picture',
           cv: 'Add a cv',
           bio: 'Add a bio',
           job_title: 'Add a job'
         }
-        res.json({
-          userData
-        });
 
-        const token = await encode(userData);
+        const user = await User.create(newUser);
+
+        const token = await encode(userData.dataValues);
         res.json({
-          token,
-          user: userData
+          token
         });
       } catch (e) {
         console.log(e);
