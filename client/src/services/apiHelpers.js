@@ -23,7 +23,17 @@ const loginUser = async (data) => {
   return resp.data;
 }
 
+const getUser = async (id, token) => {
+  const resp = await axios.get(`${BASE_URL}/user/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(resp.data);
+}
+
 export {
   registerUser,
-  loginUser
+  loginUser,
+  getUser
 }
