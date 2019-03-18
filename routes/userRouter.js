@@ -42,17 +42,13 @@ userRouter.get('/:id', restrict, async (req, res) => {
           last_name,
           password
         } = req.body;
-        const password_digest = await hash(passord);
+        const password_digest = await hash(password);
 
         const newUser = {
           email,
           password_digest,
           first_name,
           last_name,
-          profile_pic,
-          cv,
-          bio,
-          job_title
         }
 
         const user = await User.create(newUser);
