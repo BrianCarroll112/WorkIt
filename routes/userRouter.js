@@ -19,96 +19,49 @@ userRouter.use((req, res, next) => {
 
 //get user page
 userRouter.get('/:id', restrict, async (req, res) => {
-  try {
-    const id = req.params.id;
-    const user = await User.findByPk(id);
 
-    if (user.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('Unauthorized');
+      try {
+        const id = req.params.id;
+        const user = await User.findByPk(id);
 
-    } else {
-      res.json(user)
-    }
-  } catch (e) {
-    res.status(error).send(e.message);
-  }
-});
+        if (user.userId !== parseInt(res.locals.user.id)) {
+          res.status(401).send('Unauthorized');
 
-//register
-userRouter.post('/', async (req, res) => {
-  try {
-    const {
-      email,
-      first_name,
-      last_name,
-      profile_pic,
-      cv,
-      bio,
-      job_title
-    } = req.body;
-    const password_digest = await hash(passord);
+        } else {
+          res.json(user)}
+        } catch(e) {
+          res.status(error).send(e.message);
+        }
+      });
 
-    const newUser = {
-      email,
-      password_digest,
-      first_name,
-      last_name,
-      profile_pic,
-      cv,
-      bio,
-      job_title
-    }
+    //register
+    userRouter.post('/', async (req, res) => {
+      try {
+        const {
+          email,
+          first_name,
+          last_name,
+          password
+        } = req.body;
+        const password_digest = await hash(password);
 
-    const user = await User.create(newUser);
+        const newUser = {
+          email,
+          password_digest,
+          first_name,
+          last_name,
+          profile_pic: 'Add a picture',
+          cv: 'Add a cv',
+          bio: 'Add a bio',
+          job_title: 'Add a job'
+        }
 
-    const userData = {
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      profile_pic: 'Add a picture',
-      cv: 'Add a cv',
-      bio: 'Add a bio',
-      job_title: 'Add a job'
-    }
-    res.json({
-      userData
-    });
+        const user = await User.create(newUser);
 
-    const token = await encode(userData);
-    res.json({
-      token,
-      user: userData
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(500).send(e.message);
-  }
-});
+        const token = await encode(user.dataValues);
 
-//login
-userRouter.post('/login', async (req, res) => {
-  try {
-    const {
-      email,
-      password
-    } = req.body;
-    const user = await User.findOnd({
-      where: {
-        email
-      }
-    });
-
-    if (user !== null) {
-      const authenticated = await compared(password, user);
-      if (authenticated == true) {
-        const userData = {
-          email: user.email,
-          id: user.id
-        };
-        const token = await encode(userData);
         res.json({
-          token,
-          user: userData
+          token
         });
       }
     }
@@ -144,8 +97,24 @@ userRouter.delete(':id', restrict, async (req, res, next) => {
     const id = req.params.id;
     const userDelete = await User.findByPk(id);
 
-    if (userDelete.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('This is not you!!');
+    //edit profile
+    userRouter.put('/:id', restrict, async (req, res, next) => {
+        try {
+          const id = req.params.id;
+          const userProfil = await User.findByPk(id);
+
+          if (userProfil.userId !== parseInt(res.locals.user.id)) {
+            res.status(401).send('Unauthorized');
+
+          } else {
+            await userProfil.update(req.body);
+            res.json({
+              userProfil
+            })}
+          } catch (e) {
+            next(e);
+          }
+        });
 
     } else {
       await userDelete.destroy();
@@ -158,7 +127,4 @@ userRouter.delete(':id', restrict, async (req, res, next) => {
   }
 });
 
-
-module.exports = {
-  userRouter
-};
+module.exports = {userRouter};
