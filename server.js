@@ -6,7 +6,13 @@ const {
   userRouter
 } = require('./routes/userRouter');
 const {
-  User
+  jobsRouter
+} = require('./routes/jobsRouter');
+const {
+  companyRouter
+} = require('./routes/companyRouter');
+const {
+  User , Job , Company
 } = require('./models');
 
 const PORT = process.env.port || 3001;
@@ -22,6 +28,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 
 app.use('/user', userRouter);
+app.use('/jobs', jobsRouter);
+app.use('/Company', companyRouter);
 
 
 app.listen(PORT, () => console.log(`up and running on port ${PORT}`));
