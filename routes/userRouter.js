@@ -40,10 +40,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
           email,
           first_name,
           last_name,
-          profile_pic,
-          cv,
-          bio,
-          job_title
+          password
         } = req.body;
         const password_digest = await hash(passord);
 
