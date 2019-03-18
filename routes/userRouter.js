@@ -22,12 +22,13 @@ userRouter.get('/:id', restrict, async (req, res) => {
       try {
         const id = req.params.id;
         const user = await User.findByPk(id);
+        const {
+          password_digest,
+          ...userData
+        } = user.dataValues
 
-        if (user.userId !== parseInt(res.locals.user.id)) {
-          res.status(401).send('Unauthorized');
+        res.json(userData);
 
-        } else {
-          res.json(user)}
         } catch(e) {
           res.status(error).send(e.message);
         }
@@ -42,11 +43,11 @@ userRouter.get('/:id', restrict, async (req, res) => {
           last_name,
           password
         } = req.body;
-        const password_digest = await hash(password);
+        const pd = await hash(password);
 
         const newUser = {
           email,
-          password_digest,
+          password_digest: pd,
           first_name,
           last_name,
           profile_pic: 'Add a picture',
@@ -55,11 +56,16 @@ userRouter.get('/:id', restrict, async (req, res) => {
           job_title: 'Add a job'
         }
 
-        const user = await User.create(newUser);
+        const createdUser = await User.create(newUser);
+         const {
+           password_digest,
+           ...user
+         } = createdUser.dataValues;
 
-        const token = await encode(user.dataValues);
+        const token = await encode(user);
         res.json({
-          token
+          token,
+          id: createdUser.dataValues.id
         });
       } catch (e) {
         console.log(e);
@@ -74,22 +80,39 @@ userRouter.get('/:id', restrict, async (req, res) => {
           email,
           password
         } = req.body;
-        const user = await User.findOne({
+        const loggedUser = await User.findOne({
           where: {
             email
           }
         });
-
         if (user !== null) {
           const authenticated = await compare(password, user.dataValues.password_digest);
           if (authenticated == true) {
-            const userData = {
-              email: user.dataValues.email,
-              id: user.dataValues.id
+            let {
+              email,
+              first_name,
+              last_name,
+              profile_pic,
+              cv,
+              bio,
+              job_title,
+              id
+            } = loggedUser.dataValues;
+
+            const user = {
+              email,
+              first_name,
+              last_name,
+              profile_pic,
+              cv,
+              bio,
+              job_title,
+              id
             };
-            const token = await encode(userData);
+            const token = await encode(user);
             res.json({
-              token
+              token,
+              id: user.id
             });
           }
         }
@@ -119,7 +142,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
         });
 
       //delete profile
-      userRouter.delete(':id', restrict, async (req, res, next) => {
+      userRouter.delete('/:id', restrict, async (req, res, next) => {
         try {
           const id = req.params.id;
           const userDelete = await User.findByPk(id);
