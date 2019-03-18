@@ -4,7 +4,11 @@
   "description": "## Project Description",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "resetDb": "node resetDb.js",
+    "start": "node server.js",
+    "debug": "node --inspect -brk server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
     "pg": "^7.9.0",
     "sequelize": "^5.1.0"
   }
