@@ -88,7 +88,7 @@ Add C(R)UD functionality for companies to login and C(R)UD jobs
 
 ## Wireframes
 
-Wireframes sketches of the user interface with notes of how the user will interact with the UI.
+![Wireframes sketches](https://i.imgur.com/esJ0Dol.jpg).
 
 ## Component Hierarchy
 
