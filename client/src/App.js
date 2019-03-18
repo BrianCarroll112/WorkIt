@@ -14,6 +14,43 @@ class App extends Component {
   constructor() {
     super()
 
+    this.state = {
+      registerToken: '',
+      registerFormData: {
+        first_name: '',
+        last_name:'',
+        email: '',
+        password: ''
+      },
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+
+  }
+
+  handleChange(e) {
+  const { name, value } = e.target;
+  this.setState(prevState => ({
+    registerFormData: {
+      ...prevState.formData,
+      [name]: value
+    },
+   }));
+  }
+
+  async handleRegister(e) {
+    e.preventDefault();
+    const data = await registerUser(this.state.registerFormData);
+    this.setState(prevState => ({
+      registerFormData: {
+        first_name: '',
+        last_name:'',
+        email: '',
+        password: ''
+      },
+      registerToken: data.token
+    }))
   }
 
 
@@ -27,7 +64,16 @@ class App extends Component {
         )}/>
 
         <Route exact path="/register" render={(props) => (
-          <RegisterForm />
+          <RegisterForm
+          {...props}
+          buttonText="Sign Up"
+          handleChange={this.handleChange}
+          email={this.state.formData.email}
+          password={this.state.formData.password}
+          first_name={this.state.formData.first_name}
+          last_name={this.state.formData.last_name}
+          handleSubmit={this.handleRegister}
+          />
         )}/>
 
         <Route exact path="/jobs" render={(props) => (
