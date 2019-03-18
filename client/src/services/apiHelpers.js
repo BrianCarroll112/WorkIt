@@ -13,7 +13,8 @@ const registerUser = async (data) => {
   return resp.data
 };
 
-const loginUser = async (email, password) => {
+const loginUser = async (data) => {
+  const { email, password } = data;
   const resp = await axios.post(`${BASE_URL}/user/login`, {
     email,
     password
