@@ -12,6 +12,16 @@ const registerUser = async (first_name, last_name, email, password ) => {
   return resp.data
 };
 
-module.exports = {
+const loginUser = async (email, password) => {
+  const resp = await axios.post(`${BASE_URL}/user/login`, {
+    email,
+    password
+  });
+  console.log(resp.data);
+  return resp.data;
+}
+
+export {
   registerUser,
+  loginUser
 }

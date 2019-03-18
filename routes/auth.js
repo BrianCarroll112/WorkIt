@@ -11,8 +11,8 @@ const encode = async (data) => {
   return jwt.sign(data, SECRET)
 };
 
-const compare = async (passord) => {
-  const isAuthenticated = await bcrypt.compare(password, user.password_digest)
+const compare = async (password, password_digest) => {
+  const isAuthenticated = await bcrypt.compare(password, password_digest)
   return isAuthenticated
 };
 

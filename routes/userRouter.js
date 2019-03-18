@@ -74,23 +74,22 @@ userRouter.get('/:id', restrict, async (req, res) => {
           email,
           password
         } = req.body;
-        const user = await User.findOnd({
+        const user = await User.findOne({
           where: {
             email
           }
         });
 
         if (user !== null) {
-          const authenticated = await compared(password, user);
+          const authenticated = await compare(password, user.dataValues.password_digest);
           if (authenticated == true) {
             const userData = {
-              email: user.email,
-              id: user.id
+              email: user.dataValues.email,
+              id: user.dataValues.id
             };
             const token = await encode(userData);
             res.json({
-              token,
-              user: userData
+              token
             });
           }
         }
