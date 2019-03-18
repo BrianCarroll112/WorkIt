@@ -27,8 +27,8 @@ userRouter.get('/:id', restrict, async (req, res) => {
           res.status(401).send('Unauthorized');
 
         } else {
-          res.json(user)
-        } catch (e) {
+          res.json(user)}
+        } catch(e) {
           res.status(error).send(e.message);
         }
       });
@@ -130,7 +130,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
             await userProfil.update(req.body);
             res.json({
               userProfil
-            })
+            })}
           } catch (e) {
             next(e);
           }
@@ -157,4 +157,4 @@ userRouter.get('/:id', restrict, async (req, res) => {
       });
 
 
-      module.exports = userRouter;
+      module.exports = {userRouter};

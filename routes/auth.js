@@ -4,7 +4,7 @@ const SALT = 11;
 const SECRET = 'there are no jobs anyway';
 
 const hash = async (password) => {
-  return await bcrypt.hash(passord, SALT)
+  return await bcrypt.hash(password, SALT)
 };
 
 const encode = async (data) => {
@@ -12,7 +12,7 @@ const encode = async (data) => {
 };
 
 const compare = async (passord) => {
-  const isAuthenticated = await bcrypt.compare(passord, user.password_digest)
+  const isAuthenticated = await bcrypt.compare(password, user.password_digest)
   return isAuthenticated
 };
 
