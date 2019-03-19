@@ -74,7 +74,7 @@ class App extends Component {
       token: data.token
     })
     console.log(this.state.registerToken)
-    this.props.history.push('/profile');
+    this.props.history.push(`/user/${data.id}`);
   };
 
   async handleLogin(e) {
@@ -164,15 +164,14 @@ class App extends Component {
               showJob={this.showJob}/>
             <JobPage
               currentJob={this.state.currentJob}
-              jobsArray={this.state.jobsArray}/>
+              currentCompany={this.state.currentCompany}/>
             <Company
-              currentCompany={this.state.currentCompany}
-              companiesArray={this.state.companiesArray}/>
+              currentCompany={this.state.currentCompany}/>
           </div>
         )}/>
 
-        <Route exact path='/profile' render={(props) => (
-          <UserProfile />
+      <Route exact path='/user/:id' render={(props) => (
+          <UserProfile {...props} />
         )} />
 
       </div>
