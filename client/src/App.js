@@ -32,6 +32,7 @@ class App extends Component {
       password: ''
       },
       jobsArray: [],
+      renderedJobsArray: [],
       companiesArray: [],
       currentJob: {},
       currentCompany: {},
@@ -45,6 +46,8 @@ class App extends Component {
     this.showJob = this.showJob.bind(this);
     this.getCompanies = this.getCompanies.bind(this);
     this.setCompany = this.setCompany.bind(this);
+    this.setFirstView = this.setFirstView.bind(this);
+    this.setRenderedArray = this.setRenderedArray.bind(this);
   }
 
   handleChange(e) {
@@ -94,7 +97,8 @@ class App extends Component {
   async getJobs() {
     const jobsArray = await getJobs(this.token);
     this.setState({
-      jobsArray
+      jobsArray,
+      renderedJobsArray: jobsArray
     });
   }
 
@@ -121,8 +125,18 @@ class App extends Component {
     this.setCompany();
   }
 
-  //same for company, click company details button on job page ,
-  //use .find for company w company id found in current job
+  setFirstView() {
+    this.setState({
+      currentJob: this.state.renderedJobsArray[0]
+    });
+    this.setCompany();
+  }
+
+  setRenderedArray(array) {
+    this.setState({
+      renderedJobsArray: array
+    })
+  }
 
   render() {
     return (
@@ -155,13 +169,20 @@ class App extends Component {
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-            <JobSearchForm />
+            <JobSearchForm
+              jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
+              setRenderedArray={this.setRenderedArray}
+              getJobs={this.getJobs}
+              setFirstView={this.setFirstView}/>
             <JobsList
               getJobs={this.getJobs}
               getCompanies={this.getCompanies}
               jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
               companiesArray={this.state.companiesArray}
-              showJob={this.showJob}/>
+              showJob={this.showJob}
+              setFirstView={this.setFirstView}/>
             <JobPage
               currentJob={this.state.currentJob}
               currentCompany={this.state.currentCompany}/>

@@ -6,15 +6,16 @@ class JobsList extends Component {
 
   }
 
-  componentDidMount() {
-    this.props.getJobs();
-    this.props.getCompanies();
+  async componentDidMount() {
+    await this.props.getJobs();
+    await this.props.getCompanies();
+    this.props.setFirstView()
   }
 
   render() {
   return(
     <div>
-      { this.props.jobsArray.map(job => {
+      { this.props.renderedJobsArray.map(job => {
         const company = this.props.companiesArray.find(company => company.id === job.companyId);
         return (
           <div key={job.id} id={job.id} onClick={this.props.showJob}>

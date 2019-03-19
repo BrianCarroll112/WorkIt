@@ -128,7 +128,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
           const id = req.params.id;
           const userProfil = await User.findByPk(id);
 
-          if (userProfil.userId !== parseInt(res.locals.user.id)) {
+          if (userProfil.dataValues.id !== res.locals.user.id) {
             res.status(401).send('Unauthorized');
 
           } else {
