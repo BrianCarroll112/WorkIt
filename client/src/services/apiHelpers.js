@@ -32,8 +32,25 @@ const getUser = async (id, token) => {
   console.log(resp.data);
 }
 
+const baseURL =
+  'https://api.cloudinary.com/v1_1/photo-sharing-app/image/upload';
+let cloudinaryApi = axios.create({
+  baseURL: baseURL
+});
+
+const uploadPhoto = async (data) => {
+  let resp = await cloudinaryApi.post('' ,
+    {
+      file: data,
+      upload_preset: 'divs4zmo'
+    }
+  );
+  return resp;
+}
+
 export {
   registerUser,
   loginUser,
-  getUser
+  getUser,
+  uploadPhoto 
 }

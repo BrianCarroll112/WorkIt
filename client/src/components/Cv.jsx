@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import FilesBase64 from 'react-file-base64';
+import { uploadPhoto } from '../services/apiHelpers'
 
-const Cv = (props) => {
+
+class Cv extends Component {
+  constructor(){
+  super();
+  this.state = {
+      filepath: ''
+    }
+  }
+    getFiles(filepath) {
+    this.setState({
+      filepath: filepath
+    });
+  }
+
+  render(){
   return(
-    <div>CV</div>
-  )
+    <div>
+    <img src={this.state.filepath.base64} />
+    <form>
+      <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
+      <button type='submit' onClick={this.handleUpload}> upload </button>
+    </form>
+    </div>
+    )
+  }
 };
 
 export default Cv;

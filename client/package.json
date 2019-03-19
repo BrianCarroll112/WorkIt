@@ -3,11 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autobind-decorator": "^2.4.0",
     "axios": "^0.18.0",
     "react": "^16.8.4",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.8.4",
+    "react-dropzone": "^10.0.4",
+    "react-file-base64": "^1.0.3",
+    "react-images-uploader": "^1.2.0-rc1",
+    "react-progress-button-for-images-uploader": "^5.0.1",
     "react-router-dom": "^4.4.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "superagent": "^4.1.0",
+    "ts-pnp": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
