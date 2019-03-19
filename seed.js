@@ -46,6 +46,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 80000,
       experience_level: "Junior",
+      location: "New York, NY"
     });
 
     const job2 = await Job.create({
@@ -54,6 +55,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 75000,
       experience_level: "Junior",
+      location: "New York, NY"
     });
 
     const job3 = await Job.create({
@@ -62,6 +64,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 120000,
       experience_level: "Senior",
+      location: "Boston, MA"
     });
 
     const job4 = await Job.create({
@@ -70,6 +73,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 130000,
       experience_level: "Senior",
+      location: "New York, NY"
     });
 
     const job5 = await Job.create({
@@ -78,6 +82,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 80000,
       experience_level: "Junior",
+      location: "Denver, CO"
     });
 
     const job6 = await Job.create({
@@ -86,6 +91,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 80000,
       experience_level: "Mid-Level",
+      location: "New York, NY"
     });
 
     const job7 = await Job.create({
@@ -94,6 +100,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 100000,
       experience_level: "Mid-Level",
+      location: "Boston, MA"
     });
 
     const job8 = await Job.create({
@@ -102,6 +109,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 70000,
       experience_level: "Junior",
+      location: "Boston, MA"
     });
 
     const job9 = await Job.create({
@@ -110,6 +118,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 65000,
       experience_level: "Junior",
+      location: "Denver, CO"
     });
 
     const job10 = await Job.create({
@@ -118,6 +127,7 @@ const seed = async () => {
       employee_status: "Full Time",
       salary: 70000,
       experience_level: "Junior",
+      location: "Boston, MA"
     });
 
     await company1.setJobs([job1, job4]);

@@ -30,10 +30,33 @@ const getUser = async (id, token) => {
     }
   });
   console.log(resp.data);
+  return resp.data
+}
+
+const getJobs = async (token) => {
+  const resp = await axios.get(`${BASE_URL}/jobs`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(resp.data);
+  return resp.data
+}
+
+const getCompany = async (id, token) => {
+  const resp = await axios.get(`${BASE_URL}/company/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(resp.data);
+  return resp.data
 }
 
 export {
   registerUser,
   loginUser,
-  getUser
+  getUser,
+  getJobs,
+  getCompany
 }

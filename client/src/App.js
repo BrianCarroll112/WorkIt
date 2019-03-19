@@ -3,7 +3,10 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './App.css';
 import { registerUser,
-         loginUser } from './services/apiHelpers'
+         loginUser,
+         getJobs,
+         getUser,
+         getCompany } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -18,7 +21,6 @@ class App extends Component {
     super()
 
     this.state = {
-      registerToken: '',
       registerFormData: {
         email: '',
         password: '',
@@ -29,11 +31,18 @@ class App extends Component {
       email: '',
       password: ''
       },
+      jobsArray: [],
+      companiesArray: [],
+      currentJob: 0,
+      currentCompany: 0,
+      token: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.getJobs = this.getJobs.bind(this);
+    this.showJob = this.showJob.bind(this);
 
   }
 
@@ -61,7 +70,7 @@ class App extends Component {
         first_name: '',
         last_name:''
       },
-      registerToken: data.token
+      token: data.token
     })
     console.log(this.state.registerToken)
     this.props.history.push('/profile');
@@ -76,10 +85,31 @@ class App extends Component {
         email: '',
         password: '',
       },
-      loginToken: data.token
+      token: data.token
     }))
     this.props.history.push('/profile');
   }
+
+  async getJobs() {
+    const jobsArray = await getJobs(this.token);
+    this.setState({
+      jobsArray
+    });
+  }
+
+  showJob(e) {
+    this.setState({
+      currentJob: e.target.key
+    })
+  }
+
+  // async showCompany(e) {
+  //   const company = await getCompany()
+  //   const currentCompany =
+  //   this.setState({
+  //     currentCompany
+  //   })
+  // }
 
   render() {
     return (
@@ -113,9 +143,9 @@ class App extends Component {
         <Route exact path="/jobs" render={(props) => (
           <div>
           <JobSearchForm />
-          <JobsList />
-          <JobPage />
-          <Company />
+          <JobsList getJobs={this.getJobs} jobsArray={this.state.jobsArray} showJob={this.showJob}/>
+          <JobPage currentJob={this.state.currentJob} />
+          <Company currentCompany={this.state.currentCompany}/>
           </div>
         )}/>
 
