@@ -45,7 +45,6 @@ class App extends Component {
     this.showJob = this.showJob.bind(this);
     this.getCompanies = this.getCompanies.bind(this);
     this.setCompany = this.setCompany.bind(this);
-
   }
 
   handleChange(e) {
