@@ -32,12 +32,11 @@ class App extends Component {
       password: ''
       },
       jobsArray: [],
+      renderedJobsArray: [],
       companiesArray: [],
       currentJob: {},
       currentCompany: {},
       token: null,
-      isEditing: false,
-      job_title: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,33 +46,9 @@ class App extends Component {
     this.showJob = this.showJob.bind(this);
     this.getCompanies = this.getCompanies.bind(this);
     this.setCompany = this.setCompany.bind(this);
-    this.handleToggleEdit = this.handleToggleEdit.bind(this);
-    this.handleProfileChange = this.handleProfileChange.bind(this);
-    this.submitProfile = this.submitProfile.bind(this);
-  }
+    this.setFirstView = this.setFirstView.bind(this);
+    this.setRenderedArray = this.setRenderedArray.bind(this);
 
-  handleToggleEdit(e) {
-    e.preventDefault();
-    this.setState({
-      isEditing: true
-    })
-  };
-
-  handleProfileChange(e) {
-    const { name, value } = e.target;
-    this.setState(prevState => ({
-      job_title: {
-        ...prevState.job_title,
-        [name]: value
-      }
-    }));
-  }
-
-  async submitProfile(e) {
-    e.preventDefault();
-    this.setState({
-      isEditing: false,
-    })
   }
 
   handleChange(e) {
@@ -123,7 +98,8 @@ class App extends Component {
   async getJobs() {
     const jobsArray = await getJobs(this.token);
     this.setState({
-      jobsArray
+      jobsArray,
+      renderedJobsArray: jobsArray
     });
   }
 
@@ -150,8 +126,18 @@ class App extends Component {
     this.setCompany();
   }
 
-  //same for company, click company details button on job page ,
-  //use .find for company w company id found in current job
+  setFirstView() {
+    this.setState({
+      currentJob: this.state.renderedJobsArray[0]
+    });
+    this.setCompany();
+  }
+
+  setRenderedArray(array) {
+    this.setState({
+      renderedJobsArray: array
+    })
+  }
 
   render() {
     console.log(this.state.job_title)
@@ -185,19 +171,25 @@ class App extends Component {
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-            <JobSearchForm />
+            <JobSearchForm
+              jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
+              setRenderedArray={this.setRenderedArray}
+              getJobs={this.getJobs}
+              setFirstView={this.setFirstView}/>
             <JobsList
               getJobs={this.getJobs}
               getCompanies={this.getCompanies}
               jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
               companiesArray={this.state.companiesArray}
-              showJob={this.showJob}/>
+              showJob={this.showJob}
+              setFirstView={this.setFirstView}/>
             <JobPage
               currentJob={this.state.currentJob}
-              jobsArray={this.state.jobsArray}/>
+              currentCompany={this.state.currentCompany}/>
             <Company
-              currentCompany={this.state.currentCompany}
-              companiesArray={this.state.companiesArray}/>
+              currentCompany={this.state.currentCompany}/>
           </div>
         )}/>
 
@@ -205,6 +197,7 @@ class App extends Component {
           <UserProfile
           {...props}
           token={this.state.token}/>
+
         )} />
 
       </div>

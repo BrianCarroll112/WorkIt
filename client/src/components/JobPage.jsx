@@ -1,10 +1,16 @@
 import React from 'react';
 
 const JobPage = (props) => {
+  const { name } = props.currentCompany;
+  const { description, employee_status, experience_level, job_title, location, salary } = props.currentJob;
   return(
     <div>
-      <h2>Conditional Render: This is a Job Page</h2>
-      <div>Hiring for a junior web developer! $100k a year! Unlimited vacation days!</div>
+      <h2>{job_title}</h2>
+      <h3>{name} - {location}</h3>
+      <p>FT/PT: {employee_status}</p>
+      <p>Salary: {salary}</p>
+      <p>Experience: {experience_level}</p>
+      <p>{description}</p>
     </div>
   )
 };

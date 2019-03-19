@@ -140,6 +140,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
             }
           });
 
+
       //delete profile
       userRouter.delete('/:id', restrict, async (req, res, next) => {
         try {
