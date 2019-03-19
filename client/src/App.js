@@ -34,7 +34,6 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
   }
 
   handleChange(e) {
