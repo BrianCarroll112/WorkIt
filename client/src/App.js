@@ -36,6 +36,8 @@ class App extends Component {
       currentJob: {},
       currentCompany: {},
       token: null,
+      isEditing: false,
+      job_title: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,6 +47,33 @@ class App extends Component {
     this.showJob = this.showJob.bind(this);
     this.getCompanies = this.getCompanies.bind(this);
     this.setCompany = this.setCompany.bind(this);
+    this.handleToggleEdit = this.handleToggleEdit.bind(this);
+    this.handleProfileChange = this.handleProfileChange.bind(this);
+    this.submitProfile = this.submitProfile.bind(this);
+  }
+
+  handleToggleEdit(e) {
+    e.preventDefault();
+    this.setState({
+      isEditing: true
+    })
+  };
+
+  handleProfileChange(e) {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      job_title: {
+        ...prevState.job_title,
+        [name]: value
+      }
+    }));
+  }
+
+  async submitProfile(e) {
+    e.preventDefault();
+    this.setState({
+      isEditing: false,
+    })
   }
 
   handleChange(e) {
@@ -74,7 +103,7 @@ class App extends Component {
       token: data.token
     })
     console.log(this.state.registerToken)
-    this.props.history.push('/profile');
+    this.props.history.push(`/user/${data.id}`);
   };
 
   async handleLogin(e) {
@@ -125,6 +154,7 @@ class App extends Component {
   //use .find for company w company id found in current job
 
   render() {
+    console.log(this.state.job_title)
     return (
       <div className="App">
         <h1>Work it works</h1>
@@ -171,8 +201,10 @@ class App extends Component {
           </div>
         )}/>
 
-        <Route exact path='/profile' render={(props) => (
-          <UserProfile />
+        <Route exact path='/user/:id' render={(props) => (
+          <UserProfile
+          {...props}
+          token={this.state.token}/>
         )} />
 
       </div>

@@ -124,22 +124,21 @@ userRouter.get('/:id', restrict, async (req, res) => {
 
     //edit profile
     userRouter.put('/:id', restrict, async (req, res, next) => {
-        try {
-          const id = req.params.id;
-          const userProfil = await User.findByPk(id);
+          try {
+            const id = req.params.id;
+            const userProfil = await User.findByPk(id);
+            if (userProfil.dataValues.id !== res.locals.user.id) {
+              res.status(401).send('Unauthorized');
 
-          if (userProfil.userId !== parseInt(res.locals.user.id)) {
-            res.status(401).send('Unauthorized');
-
-          } else {
-            await userProfil.update(req.body);
-            res.json({
-              userProfil
-            })}
-          } catch (e) {
-            next(e);
-          }
-        });
+            } else {
+              await userProfil.update(req.body);
+              res.json({
+                userProfil
+              })}
+            } catch (e) {
+              next(e);
+            }
+          });
 
       //delete profile
       userRouter.delete('/:id', restrict, async (req, res, next) => {

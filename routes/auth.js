@@ -20,11 +20,11 @@ const verify = async (token) => {
   return jwt.verify(token, SECRET)
 };
 
-const restrict = (req, res, next) => {
+const restrict = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader.split(" ")[1];
-    const data = verify(token);
+    const data = await verify(token);
     res.locals.user = data;
     next();
   } catch (e) {
