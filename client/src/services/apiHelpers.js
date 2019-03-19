@@ -9,7 +9,7 @@ const registerUser = async (data) => {
     email,
     password
   });
-
+  console.log(resp.data)
   return resp.data
 };
 
@@ -53,15 +53,13 @@ const getCompanies = async (token) => {
   return resp.data
 }
 
-const editUser = async (id, token, data) => {
-  const resp = await axios.put(`${BASE_URL}/user/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }, data);
+const editUser = async (id, data, token) => {
+  const resp = await axios.put(`${BASE_URL}/user/${id}`,
+  data, { headers: { Authorization: `Bearer ${token}` } }
+);
   console.log(resp.data);
   return resp.data
-}
+};
 
 export {
   editUser,

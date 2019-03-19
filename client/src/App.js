@@ -48,6 +48,7 @@ class App extends Component {
     this.setCompany = this.setCompany.bind(this);
     this.setFirstView = this.setFirstView.bind(this);
     this.setRenderedArray = this.setRenderedArray.bind(this);
+
   }
 
   handleChange(e) {
@@ -139,6 +140,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.job_title)
     return (
       <div className="App">
         <h1>Work it works</h1>
@@ -191,8 +193,11 @@ class App extends Component {
           </div>
         )}/>
 
-      <Route exact path='/user/:id' render={(props) => (
-          <UserProfile {...props} />
+        <Route exact path='/user/:id' render={(props) => (
+          <UserProfile
+          {...props}
+          token={this.state.token}/>
+
         )} />
 
       </div>

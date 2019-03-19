@@ -38,17 +38,15 @@ class UserProfile extends Component {
 
   async submitProfile(e) {
     e.preventDefault();
-    await editUser();
+    const id = this.props.match.params.id
+    const token = this.props.token
+    const data = this.state.job_title
+    console.log(id)
+    await editUser(id, data, token);
     this.setState({
       isEditing: false,
     })
   }
-
-  async editUser(ev, id) {
-     ev.preventDefault();
-     const data = this.state.job_title
-     const user = await editUser(id, data);
-   };
 
 
   render() {
