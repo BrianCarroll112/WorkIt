@@ -43,8 +43,8 @@ const getJobs = async (token) => {
   return resp.data
 }
 
-const getCompany = async (id, token) => {
-  const resp = await axios.get(`${BASE_URL}/company/${id}`, {
+const getCompanies = async (token) => {
+  const resp = await axios.get(`${BASE_URL}/company`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -58,5 +58,5 @@ export {
   loginUser,
   getUser,
   getJobs,
-  getCompany
+  getCompanies
 }
