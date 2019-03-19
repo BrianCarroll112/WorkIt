@@ -6,7 +6,7 @@ import { registerUser,
          loginUser,
          getJobs,
          getUser,
-         getCompany } from './services/apiHelpers'
+         getCompanies } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -33,8 +33,8 @@ class App extends Component {
       },
       jobsArray: [],
       companiesArray: [],
-      currentJob: 0,
-      currentCompany: 0,
+      currentJob: {},
+      currentCompany: {},
       token: null,
     }
 
@@ -43,6 +43,8 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.getJobs = this.getJobs.bind(this);
     this.showJob = this.showJob.bind(this);
+    this.getCompanies = this.getCompanies.bind(this);
+    this.setCompany = this.setCompany.bind(this);
 
   }
 
@@ -97,19 +99,31 @@ class App extends Component {
     });
   }
 
-  showJob(e) {
+  async getCompanies() {
+    const companiesArray = await getCompanies(this.token);
     this.setState({
-      currentJob: e.target.key
+      companiesArray
     })
   }
 
-  // async showCompany(e) {
-  //   const company = await getCompany()
-  //   const currentCompany =
-  //   this.setState({
-  //     currentCompany
-  //   })
-  // }
+  setCompany() {
+    const { companyId } = this.state.currentJob;
+    const currentCompany = this.state.companiesArray.find((company) => company.id == companyId);
+    this.setState({
+      currentCompany
+    })
+  }
+
+  async showJob(e) {
+    const currentJob = await this.state.jobsArray.find(job => job.id == e.currentTarget.id)
+    await this.setState({
+      currentJob
+    })
+    this.setCompany();
+  }
+
+  //same for company, click company details button on job page ,
+  //use .find for company w company id found in current job
 
   render() {
     return (
@@ -129,23 +143,32 @@ class App extends Component {
 
         <Route exact path="/register" render={(props) => (
           <RegisterForm
-          {...props}
-          buttonText="Sign Up"
-          handleChange={this.handleChange}
-          email={this.state.registerFormData.email}
-          password={this.state.registerFormData.password}
-          first_name={this.state.registerFormData.first_name}
-          last_name={this.state.registerFormData.last_name}
-          handleSubmit={this.handleRegister}
+            {...props}
+            buttonText="Sign Up"
+            handleChange={this.handleChange}
+            email={this.state.registerFormData.email}
+            password={this.state.registerFormData.password}
+            first_name={this.state.registerFormData.first_name}
+            last_name={this.state.registerFormData.last_name}
+            handleSubmit={this.handleRegister}
           />
         )}/>
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-          <JobSearchForm />
-          <JobsList getJobs={this.getJobs} jobsArray={this.state.jobsArray} showJob={this.showJob}/>
-          <JobPage currentJob={this.state.currentJob} />
-          <Company currentCompany={this.state.currentCompany}/>
+            <JobSearchForm />
+            <JobsList
+              getJobs={this.getJobs}
+              getCompanies={this.getCompanies}
+              jobsArray={this.state.jobsArray}
+              companiesArray={this.state.companiesArray}
+              showJob={this.showJob}/>
+            <JobPage
+              currentJob={this.state.currentJob}
+              jobsArray={this.state.jobsArray}/>
+            <Company
+              currentCompany={this.state.currentCompany}
+              companiesArray={this.state.companiesArray}/>
           </div>
         )}/>
 
