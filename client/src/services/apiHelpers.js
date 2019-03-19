@@ -53,7 +53,18 @@ const getCompanies = async (token) => {
   return resp.data
 }
 
+const editUser = async (id, token, data) => {
+  const resp = await axios.put(`${BASE_URL}/user/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }, data);
+  console.log(resp.data);
+  return resp.data
+}
+
 export {
+  editUser,
   registerUser,
   loginUser,
   getUser,

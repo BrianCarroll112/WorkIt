@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { editUser } from '../services/apiHelpers'
 import ProfilePicture from './ProfilePicture';
 import JobTitle from './JobTitle';
 import Available from './Available';
@@ -6,8 +7,8 @@ import Bio from './Bio';
 import Cv from './Cv';
 
 class UserProfile extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       isEditing: false,
@@ -35,12 +36,20 @@ class UserProfile extends Component {
     }));
   }
 
-  submitProfile(e) {
+  async submitProfile(e) {
     e.preventDefault();
+    await editUser();
     this.setState({
       isEditing: false,
     })
   }
+
+  async editUser(ev, id) {
+     ev.preventDefault();
+     const data = this.state.job_title
+     const user = await editUser(id, data);
+   };
+
 
   render() {
     return (
