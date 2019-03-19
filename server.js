@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 app.use('/user', userRouter);
 app.use('/jobs', jobsRouter);
-app.use('/Company', companyRouter);
+app.use('/company', companyRouter);
 
 
 app.listen(PORT, () => console.log(`up and running on port ${PORT}`));

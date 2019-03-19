@@ -18,17 +18,21 @@ companyRouter.get('/:id', restrict, async (req, res) => {
   try {
     const id = req.params.id;
     const company = await Company.findByPk(id);
-
-    if (company.userId !== parseInt(res.locals.user.id)) {
-      res.status(401).send('Unauthorized');
-
-    } else {
-      res.json(company)
-    }
+    res.json(company)
   } catch (e) {
     res.status(error).send(e.message);
   }
 });
+
+//get all companies
+companyRouter.get('/', restrict, async (req, res) => {
+  try {
+    const companies = await Company.findAll();
+    res.json(companies);
+  } catch(e) {
+    res.status(error).send(e.message);
+  }
+})
 
 
 module.exports = {

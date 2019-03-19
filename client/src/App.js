@@ -3,7 +3,10 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './App.css';
 import { registerUser,
-         loginUser } from './services/apiHelpers'
+         loginUser,
+         getJobs,
+         getUser,
+         getCompanies } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -18,7 +21,6 @@ class App extends Component {
     super()
 
     this.state = {
-      registerToken: '',
       registerFormData: {
         email: '',
         password: '',
@@ -29,11 +31,20 @@ class App extends Component {
       email: '',
       password: ''
       },
+      jobsArray: [],
+      companiesArray: [],
+      currentJob: {},
+      currentCompany: {},
+      token: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.getJobs = this.getJobs.bind(this);
+    this.showJob = this.showJob.bind(this);
+    this.getCompanies = this.getCompanies.bind(this);
+    this.setCompany = this.setCompany.bind(this);
   }
 
   handleChange(e) {
@@ -60,7 +71,7 @@ class App extends Component {
         first_name: '',
         last_name:''
       },
-      registerToken: data.token
+      token: data.token
     })
     console.log(this.state.registerToken)
     this.props.history.push('/profile');
@@ -75,10 +86,43 @@ class App extends Component {
         email: '',
         password: '',
       },
-      loginToken: data.token
+      token: data.token
     }))
     this.props.history.push('/profile');
   }
+
+  async getJobs() {
+    const jobsArray = await getJobs(this.token);
+    this.setState({
+      jobsArray
+    });
+  }
+
+  async getCompanies() {
+    const companiesArray = await getCompanies(this.token);
+    this.setState({
+      companiesArray
+    })
+  }
+
+  setCompany() {
+    const { companyId } = this.state.currentJob;
+    const currentCompany = this.state.companiesArray.find((company) => company.id == companyId);
+    this.setState({
+      currentCompany
+    })
+  }
+
+  async showJob(e) {
+    const currentJob = await this.state.jobsArray.find(job => job.id == e.currentTarget.id)
+    await this.setState({
+      currentJob
+    })
+    this.setCompany();
+  }
+
+  //same for company, click company details button on job page ,
+  //use .find for company w company id found in current job
 
   render() {
     return (
@@ -98,23 +142,32 @@ class App extends Component {
 
         <Route exact path="/register" render={(props) => (
           <RegisterForm
-          {...props}
-          buttonText="Sign Up"
-          handleChange={this.handleChange}
-          email={this.state.registerFormData.email}
-          password={this.state.registerFormData.password}
-          first_name={this.state.registerFormData.first_name}
-          last_name={this.state.registerFormData.last_name}
-          handleSubmit={this.handleRegister}
+            {...props}
+            buttonText="Sign Up"
+            handleChange={this.handleChange}
+            email={this.state.registerFormData.email}
+            password={this.state.registerFormData.password}
+            first_name={this.state.registerFormData.first_name}
+            last_name={this.state.registerFormData.last_name}
+            handleSubmit={this.handleRegister}
           />
         )}/>
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-          <JobSearchForm />
-          <JobsList />
-          <JobPage />
-          <Company />
+            <JobSearchForm />
+            <JobsList
+              getJobs={this.getJobs}
+              getCompanies={this.getCompanies}
+              jobsArray={this.state.jobsArray}
+              companiesArray={this.state.companiesArray}
+              showJob={this.showJob}/>
+            <JobPage
+              currentJob={this.state.currentJob}
+              jobsArray={this.state.jobsArray}/>
+            <Company
+              currentCompany={this.state.currentCompany}
+              companiesArray={this.state.companiesArray}/>
           </div>
         )}/>
 
