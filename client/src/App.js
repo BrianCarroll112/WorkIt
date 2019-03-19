@@ -77,7 +77,6 @@ class App extends Component {
       },
       token: data.token
     })
-    console.log(this.state.registerToken)
     this.props.history.push(`/user/${data.id}`);
   };
 
@@ -92,11 +91,11 @@ class App extends Component {
       },
       token: data.token
     }))
-    this.props.history.push('/profile');
+    this.props.history.push(`/jobs`);
   }
 
   async getJobs() {
-    const jobsArray = await getJobs(this.token);
+    const jobsArray = await getJobs(this.state.token);
     this.setState({
       jobsArray,
       renderedJobsArray: jobsArray
@@ -104,7 +103,7 @@ class App extends Component {
   }
 
   async getCompanies() {
-    const companiesArray = await getCompanies(this.token);
+    const companiesArray = await getCompanies(this.state.token);
     this.setState({
       companiesArray
     })
@@ -140,7 +139,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.job_title)
     return (
       <div className="App">
         <h1>Work it works</h1>
