@@ -85,8 +85,8 @@ userRouter.get('/:id', restrict, async (req, res) => {
             email
           }
         });
-        if (user !== null) {
-          const authenticated = await compare(password, user.dataValues.password_digest);
+        if (loggedUser !== null) {
+          const authenticated = await compare(password, loggedUser.dataValues.password_digest);
           if (authenticated == true) {
             let {
               email,
