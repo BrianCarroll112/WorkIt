@@ -1,29 +1,33 @@
-import React, {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
+import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import FilesBase64 from 'react-file-base64';
+import { uploadPhoto } from '../services/apiHelpers'
 
 
-function ProfilePicture() {
-  const onDrop = useCallback(acceptedFiles => {
-    const reader = new FileReader()
-
-    reader.onabort = () => console.log('file reading was aborted')
-    reader.onerror = () => console.log('file reading has failed')
-    reader.onload = () => {
-      // Do whatever you want with the file contents
-      const binaryStr = reader.result
-      console.log(binaryStr)
+class ProfilePicture extends Component {
+  constructor(){
+  super();
+  this.state = {
+      filepath: ''
     }
+  }
+    getFiles(filepath) {
+    this.setState({
+      filepath: filepath
+    });
+  }
 
-    acceptedFiles.forEach(file => reader.readAsBinaryString(file))
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
-
-  return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
+  render(){
+  return(
+    <div>
+    <img src={this.state.filepath.base64} />
+    <form>
+      <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
+      <button type='submit' onClick={this.handleUpload}> upload </button>
+    </form>
     </div>
-  )
-}
+    )
+  }
+};
 
 export default ProfilePicture;
