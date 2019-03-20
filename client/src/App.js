@@ -15,6 +15,7 @@ import JobPage from './components/JobPage';
 import JobSearchForm from './components/JobSearchForm';
 import UserProfile from './components/UserProfile';
 import Company from './components/Company';
+import Nav from './components/Nav'
 
 class App extends Component {
   constructor() {
@@ -37,6 +38,7 @@ class App extends Component {
       currentJob: {},
       currentCompany: {},
       token: null,
+      id: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -75,7 +77,8 @@ class App extends Component {
         first_name: '',
         last_name:''
       },
-      token: data.token
+      token: data.token,
+      id: data.id
     })
     this.props.history.push(`/user/${data.id}`);
   };
@@ -89,7 +92,8 @@ class App extends Component {
         email: '',
         password: '',
       },
-      token: data.token
+      token: data.token,
+      id: data.id
     }))
     this.props.history.push(`/jobs`);
   }
@@ -169,6 +173,7 @@ class App extends Component {
 
         <Route exact path="/jobs" render={(props) => (
           <div>
+            <Nav userId={this.state.id} />
             <JobSearchForm
               jobsArray={this.state.jobsArray}
               renderedJobsArray={this.state.renderedJobsArray}
@@ -192,10 +197,12 @@ class App extends Component {
         )}/>
 
         <Route exact path='/user/:id' render={(props) => (
+          <>
+          <Nav id={this.state.id} />
           <UserProfile
           {...props}
           token={this.state.token}/>
-
+          </>
         )} />
 
       </div>
