@@ -13,10 +13,13 @@ class UserProfile extends Component {
     this.state = {
       isEditing: false,
       job_title: '',
+      bio:'',
     }
     this.handleToggleEdit = this.handleToggleEdit.bind(this);
     this.handleProfileChange = this.handleProfileChange.bind(this);
     this.submitProfile = this.submitProfile.bind(this);
+    this.submitBio = this.submitBio.bind(this);
+    this.handleBioChange = this.handleBioChange.bind(this);
   }
 
   handleToggleEdit(e) {
@@ -36,11 +39,33 @@ class UserProfile extends Component {
     }));
   }
 
+  handleBioChange(e) {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      bio: {
+        ...prevState.bio,
+        [name]: value
+      }
+    }));
+  }
+
   async submitProfile(e) {
     e.preventDefault();
     const id = this.props.match.params.id
     const token = this.props.token
     const data = this.state.job_title
+    console.log(id)
+    await editUser(id, data, token);
+    this.setState({
+      isEditing: false,
+    })
+  }
+
+  async submitBio(e) {
+    e.preventDefault();
+    const id = this.props.match.params.id
+    const token = this.props.token
+    const data = this.state.bio
     console.log(id)
     await editUser(id, data, token);
     this.setState({
@@ -62,7 +87,12 @@ class UserProfile extends Component {
       job_title={this.state.job_title}
       onChange={this.handleProfileChange}/>
       <Available />
-      <Bio />
+      <Bio
+      isEditing={this.state.isEditing}
+      handleToggleEdit={this.handleToggleEdit}
+      onChange={this.handleBioChange}
+      submitProfile={this.submitBio}
+      bio={this.state.bio}/>
       <Cv />
     </div>
     );
