@@ -11,7 +11,6 @@ const UserProfile = (props) => {
     <div>
       <h2>FirstName LastName</h2>
       <ProfilePicture />
-      <ProfilPictureTwo />
       <JobTitle />
       <Available />
       <Bio />
