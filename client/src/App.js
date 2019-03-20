@@ -41,6 +41,8 @@ class App extends Component {
       currentCompany: {},
       token: null,
       id: null,
+      showJob: true,
+      showCompany: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,6 +56,8 @@ class App extends Component {
     this.setRenderedArray = this.setRenderedArray.bind(this);
     this.handleLogout = this.handleLogout.bind(this)
     this.deleteUserProfile = this.deleteUserProfile.bind(this);
+    this.toggleShowCompany = this.toggleShowCompany.bind(this);
+    this.toggleHideCompany = this.toggleHideCompany.bind(this);
   }
 
   handleChange(e) {
@@ -163,6 +167,22 @@ class App extends Component {
     this.props.history.push(`/`)
   }
 
+  toggleShowCompany(e){
+    e.preventDefault()
+    this.setState({
+      showCompany: true,
+      showJob: false
+    })
+  }
+
+  toggleHideCompany(e){
+    e.preventDefault()
+    this.setState({
+      showCompany: false,
+      showJob: true
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -212,9 +232,13 @@ class App extends Component {
               setFirstView={this.setFirstView}/>
             <JobPage
               currentJob={this.state.currentJob}
-              currentCompany={this.state.currentCompany}/>
+              currentCompany={this.state.currentCompany}
+              show={this.toggleShowCompany}
+              showJob={this.state.showJob}/>
             <Company
-              currentCompany={this.state.currentCompany}/>
+              currentCompany={this.state.currentCompany}
+              showCompany={this.state.showCompany}
+              show={this.toggleHideCompany}/>
           </div>
         )}/>
 
