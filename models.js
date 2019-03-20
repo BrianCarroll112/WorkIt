@@ -22,14 +22,15 @@ if (process.env.DATABASE_URL) {
   });
 }
 
+{profile_pic: data}
 
 const User = sequelize.define('user', {
   email: { type: Sequelize.STRING, unique: true },
   password_digest: Sequelize.STRING,
   first_name: Sequelize.STRING,
   last_name: Sequelize.STRING,
-  profile_pic: Sequelize.STRING,
-  cv: Sequelize.STRING,
+  profile_pic: Sequelize.TEXT,
+  cv: Sequelize.TEXT,
   bio: Sequelize.TEXT,
   job_title: Sequelize.STRING,
 });
