@@ -2,15 +2,17 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import axios from 'axios';
+import { uploadPhotoApi } from '../services/apiHelpers';
 
 const CLOUDINARY_UPLOAD_PRESET = 'divs4zmo';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload'
+const CLOUDINARY_UPLOAD_URL = 'http://api.cloudinary.com/v1_1/di3ne3vdv/image/upload'
 
 export default class ProfilePictureTwo extends React.Component {
   constructor(props) {
      super(props);
 
      this.state = {
+       filepath: '',
        uploadedFile: null,
        uploadedFileCloudinaryUrl: ''
      };
@@ -23,35 +25,15 @@ export default class ProfilePictureTwo extends React.Component {
      this.handleImageUpload(files[0]);
    }
 
-    handleImageUpload(file) {
-            const baseURL =
-            'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
-            let cloudinaryApi = axios.create({
-            baseURL: baseURL
-            });
+   async handleImageUpload(file){
+     let resp = await uploadPhotoApi(file);
 
-            let upload = async (data) => {
-            let resp = await cloudinaryApi.post('' ,
-              {
-                file: data,
-                upload_preset: 'divs4zmo'
-              }
-            );
-            return resp;
-
-            upload.end((err, resp) => {
-              if (err) {
-                console.error(err);
-              }
-
-            if (resp.body.secure_url !== '') {
-              this.setState({
-                uploadedFileCloudinaryUrl: resp.body.secure_url
-              });
-            }
+    this.setState({
+      uploadedFileCloudinaryUrl: resp.body.secure_url
         });
       }
-  }
+
+
 
   render(){
     return (
