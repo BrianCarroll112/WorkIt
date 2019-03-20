@@ -268,6 +268,7 @@ class App extends Component {
           <button onClick={this.handleLogout}>Logout</button>
           <UserProfile
           {...props}
+          id={this.state.id}
           token={this.state.token}/>
           </>
         )} />

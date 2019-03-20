@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { editUser,
         getUser } from '../services/apiHelpers'
 import ProfilePicture from './ProfilePicture';
-import ProfilPictureTwo from './ProfilPictureTwo';
 import JobTitle from './JobTitle';
 import Available from './Available';
 import Bio from './Bio';
@@ -110,7 +109,9 @@ class UserProfile extends Component {
     return (
     <div>
       <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
-      <ProfilePicture />
+      <ProfilePicture {...this.props}
+      id={this.props.id}
+      token={this.props.token}/>
       <JobTitle
       buttonText="Edit"
       handleToggleEdit={this.handleToggleEdit}
