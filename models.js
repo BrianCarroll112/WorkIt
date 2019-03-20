@@ -22,8 +22,6 @@ if (process.env.DATABASE_URL) {
   });
 }
 
-{profile_pic: data}
-
 const User = sequelize.define('user', {
   email: { type: Sequelize.STRING, unique: true },
   password_digest: Sequelize.STRING,
