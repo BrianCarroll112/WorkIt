@@ -130,10 +130,19 @@ class App extends Component {
   }
 
   setFirstView() {
-    this.setState({
-      currentJob: this.state.renderedJobsArray[0]
-    });
-    this.setCompany();
+    if (this.state.renderedJobsArray.length > 0 ){
+      this.setState({
+        currentJob: this.state.renderedJobsArray[0],
+        showJob:true,
+        showCompany:false
+      });
+      this.setCompany();
+    } else {
+      this.setState({
+        showJob: false,
+        showCompany:false
+      })
+    }
   }
 
   setRenderedArray(array) {
