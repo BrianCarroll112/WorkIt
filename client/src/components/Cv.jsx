@@ -7,25 +7,30 @@ class Cv extends Component {
   constructor(){
   super();
   this.state = {
-      filepath: ''
+      filepath: '',
+      url:''
     }
   }
 
     getFiles(filepath) {
     this.setState({
-      filepath: filepath
+      filepath: filepath,
     });
     console.log(filepath);
+  }
+
+  const url = URL.createObjectURL(filepath){
+    this.setState({ url: url })
   }
 
   async handleUpload(){
     await uploadPhotoApi(this.state.filepath.base64);
   }
 
-
   render(){
     return(
     <div>
+    <a href={this.state.url}> Your Cv </a>
     <form>
       <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
       <button type='submit' onClick={this.handleUpload}> upload </button>

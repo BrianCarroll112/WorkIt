@@ -46,7 +46,7 @@ const uploadPhotoApi = async (data) => {
   let resp = await cloudinaryApi.post('' ,
     {
       file: data,
-      upload_preset: 'di3ne3vdv'
+      upload_preset: 'divs4zmo'
     }
   );
   return resp;
