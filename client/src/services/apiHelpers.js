@@ -36,7 +36,7 @@ const getUser = async (id, token) => {
   console.log(resp.data);
 }
 
-const baseURL = 'http://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
+const baseURL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
   let cloudinaryApi = axios.create({
     baseURL: baseURL
   });

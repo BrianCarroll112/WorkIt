@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Dropzone, useDropzone} from 'react-dropzone';
 import FilesBase64 from 'react-file-base64';
 import { uploadPhotoApi } from '../services/apiHelpers';
 
@@ -22,7 +21,6 @@ class ProfilePicture extends Component {
     await uploadPhotoApi(this.state.filepath.base64);
   }
 
-
   render(){
     return(
     <div>
@@ -37,21 +35,3 @@ class ProfilePicture extends Component {
 };
 
 export default ProfilePicture;
-
-
-  /* const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-    <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop}) */
-
-/*  return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {
-        isDragActive ?
-          <p>Drop the files here ...</p> :
-          <p>Drag 'n' drop some files here, or click to select files</p>
-      }
-    </div>
-  ) */

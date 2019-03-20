@@ -16,13 +16,24 @@ export default class ProfilePictureTwo extends React.Component {
        uploadedFile: null,
        uploadedFileCloudinaryUrl: ''
      };
+     this.onImageDrop = this.onImageDrop.bind(this)
+     this.handleImageUpload = this.handleImageUpload.bind(this)
+   }
+
+
+  getBase64(item, cb) {
+     let reader = new FileReader();
+     reader.readAsDataURL(item);
+     reader.onload = () => cb(reader.result);
+     reader.onerror = function(e) {console.log("error", e)}
    }
 
    onImageDrop(files) {
-    this.setState({
-      uploadedFile: files[0]
-    });
-     this.handleImageUpload(files[0]);
+     this.getBase64(files[0], (result) => {
+       this.setState({
+         uploadedFile: result
+       })
+     })
    }
 
    async handleImageUpload(file){
@@ -34,21 +45,26 @@ export default class ProfilePictureTwo extends React.Component {
       }
 
 
-
   render(){
     return (
     <form>
       <div>
       <Dropzone
-        onDrop={this.onImageDrop.bind(this)}
-        accept="image"
+        onDrop={acceptedFiles => {
+          this.onImageDrop(acceptedFiles);
+          this.handleImageUpload(this.state.uploadedFile);
+        }}
         multiple={false}>
 
-        {({getRootProps, getInputProps}) => {
+        {({getRootProps, getInputProps, isDragActive}) => {
           return (
             <div {...getRootProps()} >
             <input {...getInputProps()} />
-              {<p>Try dropping some files here, or click to select files to upload.</p>}
+              {
+                isDragActive ?
+                  <p>Drop the files here ...</p> :
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+              }
             </div>
             )
           }}
