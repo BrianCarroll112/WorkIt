@@ -16,8 +16,10 @@ import JobPage from './components/JobPage';
 import JobSearchForm from './components/JobSearchForm';
 import UserProfile from './components/UserProfile';
 import Company from './components/Company';
-import Nav from './components/Nav'
-import DeleteReroute from './components/DeleteReroute'
+import Nav from './components/Nav';
+import DeleteReroute from './components/DeleteReroute';
+import ApplicationProfile from './components/ApplicationProfile';
+import ApplicationSent from './components/ApplicationSent';
 
 class App extends Component {
   constructor() {
@@ -58,6 +60,7 @@ class App extends Component {
     this.deleteUserProfile = this.deleteUserProfile.bind(this);
     this.toggleShowCompany = this.toggleShowCompany.bind(this);
     this.toggleHideCompany = this.toggleHideCompany.bind(this);
+    this.handleApplyRedirect = this.handleApplyRedirect.bind(this);
   }
 
   handleChange(e) {
@@ -192,6 +195,12 @@ class App extends Component {
     })
   }
 
+  handleApplyRedirect(e) {
+    e.preventDefault()
+
+    this.props.history.push(`/application/${this.state.id}`)
+  }
+
   render() {
     return (
       <div className="App">
@@ -243,11 +252,13 @@ class App extends Component {
               currentJob={this.state.currentJob}
               currentCompany={this.state.currentCompany}
               show={this.toggleShowCompany}
-              showJob={this.state.showJob}/>
+              showJob={this.state.showJob}
+              apply={this.handleApplyRedirect}/>
             <Company
               currentCompany={this.state.currentCompany}
               showCompany={this.state.showCompany}
-              show={this.toggleHideCompany}/>
+              show={this.toggleHideCompany}
+              apply={this.handleApplyRedirect}/>
           </div>
         )}/>
 
@@ -266,6 +277,19 @@ class App extends Component {
           {...props}
           deleteUser={this.deleteUserProfile}
            />
+        )}  />
+
+        <Route exact path='/application/:id' render={(props) => (
+          <ApplicationProfile
+          token={this.state.token}
+          id={this.state.id}/>
+        )}  />
+
+        <Route exact path='/sent' render={(props) => (
+          <>
+          <Nav id={this.state.id} />
+          <ApplicationSent />
+          </>
         )}  />
 
       </div>
