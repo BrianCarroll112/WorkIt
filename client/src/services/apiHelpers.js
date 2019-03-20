@@ -1,5 +1,5 @@
 const axios = require('axios');
-const BASE_URL = 'https://calm-thicket-19570.herokuapp.com/';
+const BASE_URL = 'https://calm-thicket-19570.herokuapp.com';
 
 const registerUser = async (data) => {
   const { first_name, last_name, email, password } = data;
