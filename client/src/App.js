@@ -50,7 +50,7 @@ class App extends Component {
     this.setCompany = this.setCompany.bind(this);
     this.setFirstView = this.setFirstView.bind(this);
     this.setRenderedArray = this.setRenderedArray.bind(this);
-
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleChange(e) {
@@ -142,6 +142,13 @@ class App extends Component {
     })
   }
 
+  handleLogout() {
+    this.setState({
+      token: null
+    })
+    this.props.history.push(`/`)
+  }
+
   render() {
     return (
       <div className="App">
@@ -174,6 +181,7 @@ class App extends Component {
         <Route exact path="/jobs" render={(props) => (
           <div>
             <Nav userId={this.state.id} />
+            <button onClick={this.handleLogout}>Logout</button>
             <JobSearchForm
               jobsArray={this.state.jobsArray}
               renderedJobsArray={this.state.renderedJobsArray}
@@ -199,6 +207,7 @@ class App extends Component {
         <Route exact path='/user/:id' render={(props) => (
           <>
           <Nav id={this.state.id} />
+          <button onClick={this.handleLogout}>Logout</button>
           <UserProfile
           {...props}
           token={this.state.token}/>
