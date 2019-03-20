@@ -61,11 +61,22 @@ const editUser = async (id, data, token) => {
   return resp.data
 };
 
+const deleteUser = async (id, token) => {
+  const resp = await axios.delete(`${BASE_URL}/user/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(resp.data);
+  return resp.data
+}
+
 export {
   editUser,
   registerUser,
   loginUser,
   getUser,
   getJobs,
-  getCompanies
+  getCompanies,
+  deleteUser
 }
