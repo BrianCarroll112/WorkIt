@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { editUser } from '../services/apiHelpers'
+import { editUser,
+        getUser } from '../services/apiHelpers'
 import ProfilePicture from './ProfilePicture';
 import JobTitle from './JobTitle';
 import Available from './Available';
@@ -11,7 +12,9 @@ class UserProfile extends Component {
     super(props)
 
     this.state = {
-      isEditing: false,
+      user: [],
+      isEditingJobTitle: false,
+      isEditingBio: false,
       job_title: '',
       bio:'',
     }
@@ -20,12 +23,29 @@ class UserProfile extends Component {
     this.submitProfile = this.submitProfile.bind(this);
     this.submitBio = this.submitBio.bind(this);
     this.handleBioChange = this.handleBioChange.bind(this);
+    this.handleToggleBioEdit = this.handleToggleBioEdit.bind(this);
+  }
+
+  async componentDidMount() {
+    const id = this.props.match.params.id
+    const token = this.props.token
+    const user = await getUser(id, token)
+    this.setState({
+      user
+    })
   }
 
   handleToggleEdit(e) {
     e.preventDefault();
     this.setState({
-      isEditing: true
+      isEditingJobTitle: true,
+    })
+  };
+
+  handleToggleBioEdit(e) {
+    e.preventDefault();
+    this.setState({
+      isEditingBio: true,
     })
   };
 
@@ -51,13 +71,14 @@ class UserProfile extends Component {
 
   async submitProfile(e) {
     e.preventDefault();
-    const id = this.props.match.params.id
-    const token = this.props.token
-    const data = this.state.job_title
-    console.log(id)
+    const id = this.props.match.params.id;
+    const token = this.props.token;
+    const data = this.state.job_title;
     await editUser(id, data, token);
+    const user = await getUser(id, token)
     this.setState({
-      isEditing: false,
+      isEditingJobTitle: false,
+      user
     })
   }
 
@@ -68,31 +89,34 @@ class UserProfile extends Component {
     const data = this.state.bio
     console.log(id)
     await editUser(id, data, token);
+    const user = await getUser(id, token)
     this.setState({
-      isEditing: false,
+      isEditingBio: false,
+      user
     })
   }
 
 
   render() {
+    console.log(this.state.user);
     return (
     <div>
-      <h2>FirstName LastName</h2>
+      <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
       <ProfilePicture />
       <JobTitle
       buttonText="Edit"
       handleToggleEdit={this.handleToggleEdit}
       submitProfile={this.submitProfile}
-      isEditing={this.state.isEditing}
-      job_title={this.state.job_title}
+      isEditing={this.state.isEditingJobTitle}
+      job_title={this.state.user.job_title}
       onChange={this.handleProfileChange}/>
       <Available />
       <Bio
-      isEditing={this.state.isEditing}
-      handleToggleEdit={this.handleToggleEdit}
+      isEditing={this.state.isEditingBio}
+      handleToggleEdit={this.handleToggleBioEdit}
       onChange={this.handleBioChange}
       submitProfile={this.submitBio}
-      bio={this.state.bio}/>
+      bio={this.state.user.bio}/>
       <Cv />
     </div>
     );

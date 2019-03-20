@@ -23,7 +23,7 @@ const Bio = (props) => {
       <div>
         {props.bio === ''?
         <div>Add Bio</div> :
-        <div>{props.bio.bio}</div>}
+        <div>{props.bio}</div>}
         <button
         onClick={props.handleToggleEdit}>
         {props.buttonText}

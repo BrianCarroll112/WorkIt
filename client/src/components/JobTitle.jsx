@@ -1,6 +1,7 @@
 import React from 'react';
 
 const JobTitle = (props) => {
+  console.log(props)
   return(
     <div>
     {props.isEditing !== false ?
@@ -24,7 +25,7 @@ const JobTitle = (props) => {
       <div>
         {props.job_title === '' ?
           <div>Add Job Title</div> :
-          <div>{props.job_title.job_title}</div>}
+          <div>{props.job_title}</div>}
         <button
         onClick={props.handleToggleEdit}>
         {props.buttonText}
