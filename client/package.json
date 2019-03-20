@@ -3,12 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autobind-decorator": "^2.4.0",
     "axios": "^0.18.0",
     "react": "^16.8.4",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.8.4",
+    "react-drop-to-upload": "^1.0.2",
     "react-dropzone": "^10.0.4",
+    "react-file-base64": "^1.0.3",
+    "react-image-dropzone": "^1.11.0",
+    "react-images-uploader": "^1.2.0-rc1",
+    "react-pdf": "^4.0.5",
+    "react-progress-button-for-images-uploader": "^5.0.1",
     "react-router-dom": "^4.4.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "superagent": "^4.1.0",
+    "ts-pnp": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,5 +34,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.1"
+  }
 }

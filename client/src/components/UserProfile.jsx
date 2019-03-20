@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { editUser,
         getUser } from '../services/apiHelpers'
 import ProfilePicture from './ProfilePicture';
+import ProfilPictureTwo from './ProfilPictureTwo';
 import JobTitle from './JobTitle';
 import Available from './Available';
 import Bio from './Bio';

@@ -1,4 +1,8 @@
 const axios = require('axios');
+
+const CLOUDINARY_UPLOAD_PRESET = 'divs4zmo';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
+const CLOUDINARY_API_KEY = '539525393816812';
 const BASE_URL = 'https://calm-thicket-19570.herokuapp.com';
 
 const registerUser = async (data) => {
@@ -71,11 +75,28 @@ const deleteUser = async (id, token) => {
   return resp.data
 }
 
+const baseURL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
+  let cloudinaryApi = axios.create({
+    baseURL: baseURL
+  });
+
+const uploadPhotoApi = async (data) => {
+  console.log(`triggered with ${data}`);
+    let resp = await cloudinaryApi.post('' ,
+    {
+      file: data,
+      upload_preset: 'divs4zmo'
+    }
+  );
+  return resp;
+}
+
 export {
   editUser,
   registerUser,
   loginUser,
   getUser,
+  uploadPhotoApi
   getJobs,
   getCompanies,
   deleteUser

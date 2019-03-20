@@ -24,7 +24,7 @@ class ProfilePicture extends Component {
   render(){
     return(
     <div>
-    <embed src={this.state.filepath.base64} width="400" height="300"/>
+    <img src={this.state.filepath.base64} alt=''/>
     <form>
       <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
       <button type='submit' onClick={this.handleUpload}> upload </button>
