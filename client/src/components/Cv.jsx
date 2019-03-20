@@ -1,29 +1,38 @@
-import React, {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
+import React, { Component } from 'react';
+import { Dropzone, useDropzone} from 'react-dropzone';
+import FilesBase64 from 'react-file-base64';
+import { uploadPhotoApi } from '../services/apiHelpers';
 
-////Not working ///////
-function Cv() {
-  const onDrop = useCallback(acceptedFiles => {
-    const reader = new FileReader()
-
-    reader.onabort = () => console.log('file reading was aborted')
-    reader.onerror = () => console.log('file reading has failed')
-    reader.onload = () => {
-      // Do whatever you want with the file contents
-      const binaryStr = reader.result
-      console.log(binaryStr)
+class Cv extends Component {
+  constructor(){
+  super();
+  this.state = {
+      filepath: ''
     }
+  }
 
-    acceptedFiles.forEach(file => reader.readAsBinaryString(file))
-  }, [])
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    getFiles(filepath) {
+    this.setState({
+      filepath: filepath
+    });
+    console.log(filepath);
+  }
 
-  return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
+  async handleUpload(){
+    await uploadPhotoApi(this.state.filepath.base64);
+  }
+
+
+  render(){
+    return(
+    <div>
+    <form>
+      <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
+      <button type='submit' onClick={this.handleUpload}> upload </button>
+    </form>
     </div>
-  )
-}
+    )
+  }
+};
 
 export default Cv;

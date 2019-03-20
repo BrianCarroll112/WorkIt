@@ -1,5 +1,9 @@
 const axios = require('axios');
 const BASE_URL = 'http://localhost:3001';
+const CLOUDINARY_UPLOAD_PRESET = 'di3ne3vdv';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
+const CLOUDINARY_API_KEY = '539525393816812';
+
 
 const registerUser = async (data) => {
   const { first_name, last_name, email, password } = data;
@@ -33,16 +37,16 @@ const getUser = async (id, token) => {
 }
 
 const baseURL =
-  'https://api.cloudinary.com/v1_1/photo-sharing-app/image/upload';
+  'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
 let cloudinaryApi = axios.create({
   baseURL: baseURL
 });
 
-const uploadPhoto = async (data) => {
+const uploadPhotoApi = async (data) => {
   let resp = await cloudinaryApi.post('' ,
     {
       file: data,
-      upload_preset: 'divs4zmo'
+      upload_preset: 'di3ne3vdv'
     }
   );
   return resp;
@@ -52,5 +56,5 @@ export {
   registerUser,
   loginUser,
   getUser,
-  uploadPhoto 
+  uploadPhotoApi
 }
