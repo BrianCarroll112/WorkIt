@@ -96,7 +96,7 @@ export {
   registerUser,
   loginUser,
   getUser,
-  uploadPhotoApi
+  uploadPhotoApi,
   getJobs,
   getCompanies,
   deleteUser
