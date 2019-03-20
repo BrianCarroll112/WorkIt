@@ -17,7 +17,7 @@ const {
   Company
 } = require('./models');
 
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 app.use('/user', userRouter);
 app.use('/jobs', jobsRouter);
-app.use('/Company', companyRouter);
+app.use('/company', companyRouter);
 
 
 app.listen(PORT, () => console.log(`up and running on port ${PORT}`));

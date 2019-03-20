@@ -24,6 +24,16 @@ companyRouter.get('/:id', restrict, async (req, res) => {
   }
 });
 
+//get all companies
+companyRouter.get('/', restrict, async (req, res) => {
+  try {
+    const companies = await Company.findAll();
+    res.json(companies);
+  } catch(e) {
+    res.status(error).send(e.message);
+  }
+})
+
 
 module.exports = {
   companyRouter

@@ -3,7 +3,11 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import './App.css';
 import { registerUser,
-         loginUser } from './services/apiHelpers'
+         loginUser,
+         getJobs,
+         getUser,
+         getCompanies,
+         deleteUser } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -12,13 +16,14 @@ import JobPage from './components/JobPage';
 import JobSearchForm from './components/JobSearchForm';
 import UserProfile from './components/UserProfile';
 import Company from './components/Company';
+import Nav from './components/Nav'
+import DeleteReroute from './components/DeleteReroute'
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      registerToken: '',
       registerFormData: {
         email: '',
         password: '',
@@ -29,12 +34,30 @@ class App extends Component {
       email: '',
       password: ''
       },
+      jobsArray: [],
+      renderedJobsArray: [],
+      companiesArray: [],
+      currentJob: {},
+      currentCompany: {},
+      token: null,
+      id: null,
+      showJob: true,
+      showCompany: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+    this.getJobs = this.getJobs.bind(this);
+    this.showJob = this.showJob.bind(this);
+    this.getCompanies = this.getCompanies.bind(this);
+    this.setCompany = this.setCompany.bind(this);
+    this.setFirstView = this.setFirstView.bind(this);
+    this.setRenderedArray = this.setRenderedArray.bind(this);
+    this.handleLogout = this.handleLogout.bind(this)
+    this.deleteUserProfile = this.deleteUserProfile.bind(this);
+    this.toggleShowCompany = this.toggleShowCompany.bind(this);
+    this.toggleHideCompany = this.toggleHideCompany.bind(this);
   }
 
   handleChange(e) {
@@ -61,10 +84,10 @@ class App extends Component {
         first_name: '',
         last_name:''
       },
-      registerToken: data.token
+      token: data.token,
+      id: data.id
     })
-    console.log(this.state.registerToken)
-    this.props.history.push('/profile');
+    this.props.history.push(`/user/${data.id}`);
   };
 
   async handleLogin(e) {
@@ -76,9 +99,97 @@ class App extends Component {
         email: '',
         password: '',
       },
-      loginToken: data.token
+      token: data.token,
+      id: data.id
     }))
-    this.props.history.push('/profile');
+    this.props.history.push(`/jobs`);
+  }
+
+  async getJobs() {
+    const jobsArray = await getJobs(this.state.token);
+    this.setState({
+      jobsArray,
+      renderedJobsArray: jobsArray
+    });
+  }
+
+  async getCompanies() {
+    const companiesArray = await getCompanies(this.state.token);
+    this.setState({
+      companiesArray
+    })
+  }
+
+  setCompany() {
+    const { companyId } = this.state.currentJob;
+    const currentCompany = this.state.companiesArray.find((company) => company.id == companyId);
+    this.setState({
+      currentCompany
+    })
+  }
+
+  async showJob(e) {
+    const currentJob = await this.state.jobsArray.find(job => job.id == e.currentTarget.id)
+    await this.setState({
+      currentJob
+    })
+    this.setCompany();
+  }
+
+  setFirstView() {
+    if (this.state.renderedJobsArray.length > 0 ){
+      this.setState({
+        currentJob: this.state.renderedJobsArray[0],
+        showJob:true,
+        showCompany:false
+      });
+      this.setCompany();
+    } else {
+      this.setState({
+        showJob: false,
+        showCompany:false
+      })
+    }
+  }
+
+  setRenderedArray(array) {
+    this.setState({
+      renderedJobsArray: array
+    })
+  }
+
+  handleLogout() {
+    this.setState({
+      token: null
+    })
+    this.props.history.push(`/`)
+  }
+
+  async deleteUserProfile() {
+    let id = this.state.id
+    let token = this.state.token
+    await deleteUser(id, token)
+    this.setState({
+      token: null,
+      id: null,
+    })
+    this.props.history.push(`/`)
+  }
+
+  toggleShowCompany(e){
+    e.preventDefault()
+    this.setState({
+      showCompany: true,
+      showJob: false
+    })
+  }
+
+  toggleHideCompany(e){
+    e.preventDefault()
+    this.setState({
+      showCompany: false,
+      showJob: true
+    })
   }
 
   render() {
@@ -99,29 +210,63 @@ class App extends Component {
 
         <Route exact path="/register" render={(props) => (
           <RegisterForm
-          {...props}
-          buttonText="Sign Up"
-          handleChange={this.handleChange}
-          email={this.state.registerFormData.email}
-          password={this.state.registerFormData.password}
-          first_name={this.state.registerFormData.first_name}
-          last_name={this.state.registerFormData.last_name}
-          handleSubmit={this.handleRegister}
+            {...props}
+            buttonText="Sign Up"
+            handleChange={this.handleChange}
+            email={this.state.registerFormData.email}
+            password={this.state.registerFormData.password}
+            first_name={this.state.registerFormData.first_name}
+            last_name={this.state.registerFormData.last_name}
+            handleSubmit={this.handleRegister}
           />
         )}/>
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-          <JobSearchForm />
-          <JobsList />
-          <JobPage />
-          <Company />
+            <Nav userId={this.state.id} />
+            <button onClick={this.handleLogout}>Logout</button>
+            <JobSearchForm
+              jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
+              setRenderedArray={this.setRenderedArray}
+              getJobs={this.getJobs}
+              setFirstView={this.setFirstView}/>
+            <JobsList
+              getJobs={this.getJobs}
+              getCompanies={this.getCompanies}
+              jobsArray={this.state.jobsArray}
+              renderedJobsArray={this.state.renderedJobsArray}
+              companiesArray={this.state.companiesArray}
+              showJob={this.showJob}
+              setFirstView={this.setFirstView}/>
+            <JobPage
+              currentJob={this.state.currentJob}
+              currentCompany={this.state.currentCompany}
+              show={this.toggleShowCompany}
+              showJob={this.state.showJob}/>
+            <Company
+              currentCompany={this.state.currentCompany}
+              showCompany={this.state.showCompany}
+              show={this.toggleHideCompany}/>
           </div>
         )}/>
 
-        <Route exact path='/profile' render={(props) => (
-          <UserProfile />
+        <Route exact path='/user/:id' render={(props) => (
+          <>
+          <Nav id={this.state.id} />
+          <button onClick={this.handleLogout}>Logout</button>
+          <UserProfile
+          {...props}
+          token={this.state.token}/>
+          </>
         )} />
+
+        <Route exact path='/delete/:id' render={(props) => (
+          <DeleteReroute
+          {...props}
+          deleteUser={this.deleteUserProfile}
+           />
+        )}  />
 
       </div>
     );

@@ -1,13 +1,28 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize({
-  database: 'workit_db',
-  dialect: 'postgres',
-  operatorsAliases: false,
-  define: {
-    underscored: true,
-    returning: true
-  }
-});
+
+let sequelize;
+if (process.env.DATABASE_URL) {
+  console.log('called');
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect:  'postgres',
+    logging:  true,
+    operatorsAliases: false,
+    define: {
+      underscored: true
+    }
+  });
+} else {
+  sequelize = new Sequelize({
+    database: 'workit_db',
+    dialect: 'postgresql',
+    operatorsAliases: false,
+    define: {
+      underscored: true
+    }
+  });
+}
+
+
 const User = sequelize.define('user', {
   email: { type: Sequelize.STRING, unique: true },
   password_digest: Sequelize.STRING,
@@ -33,9 +48,6 @@ const Job = sequelize.define('job', {
   location: Sequelize.STRING,
 });
 
-// const Vouch = sequelize.define('vouch', {
-// post-mvp
-// });
 
 Job.belongsTo(Company);
 Company.hasMany(Job);
