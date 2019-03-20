@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { editUser,
         getUser } from '../services/apiHelpers'
 import ProfilePicture from './ProfilePicture';
@@ -24,6 +26,7 @@ class UserProfile extends Component {
     this.submitBio = this.submitBio.bind(this);
     this.handleBioChange = this.handleBioChange.bind(this);
     this.handleToggleBioEdit = this.handleToggleBioEdit.bind(this);
+    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
   }
 
   async componentDidMount() {
@@ -96,6 +99,10 @@ class UserProfile extends Component {
     })
   }
 
+  handleConfirmDelete(e){
+    e.preventDefault()
+    this.props.history.push(`/delete/${this.state.user.id}`)
+  }
 
   render() {
     console.log(this.state.user);
@@ -118,9 +125,13 @@ class UserProfile extends Component {
       submitProfile={this.submitBio}
       bio={this.state.user.bio}/>
       <Cv />
+      <button
+      onClick={this.handleConfirmDelete}
+      >Delete Profile</button>
+
     </div>
     );
   }
 }
 
-export default UserProfile;
+export default withRouter(UserProfile);

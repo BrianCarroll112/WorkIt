@@ -6,7 +6,8 @@ import { registerUser,
          loginUser,
          getJobs,
          getUser,
-         getCompanies } from './services/apiHelpers'
+         getCompanies,
+         deleteUser } from './services/apiHelpers'
 
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
@@ -16,6 +17,7 @@ import JobSearchForm from './components/JobSearchForm';
 import UserProfile from './components/UserProfile';
 import Company from './components/Company';
 import Nav from './components/Nav'
+import DeleteReroute from './components/DeleteReroute'
 
 class App extends Component {
   constructor() {
@@ -51,6 +53,7 @@ class App extends Component {
     this.setFirstView = this.setFirstView.bind(this);
     this.setRenderedArray = this.setRenderedArray.bind(this);
     this.handleLogout = this.handleLogout.bind(this)
+    this.deleteUserProfile = this.deleteUserProfile.bind(this);
   }
 
   handleChange(e) {
@@ -149,6 +152,17 @@ class App extends Component {
     this.props.history.push(`/`)
   }
 
+  async deleteUserProfile() {
+    let id = this.state.id
+    let token = this.state.token
+    await deleteUser(id, token)
+    this.setState({
+      token: null,
+      id: null,
+    })
+    this.props.history.push(`/`)
+  }
+
   render() {
     return (
       <div className="App">
@@ -213,6 +227,13 @@ class App extends Component {
           token={this.state.token}/>
           </>
         )} />
+
+        <Route exact path='/delete/:id' render={(props) => (
+          <DeleteReroute
+          {...props}
+          deleteUser={this.deleteUserProfile}
+           />
+        )}  />
 
       </div>
     );

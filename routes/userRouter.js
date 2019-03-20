@@ -147,7 +147,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
           const id = req.params.id;
           const userDelete = await User.findByPk(id);
 
-          if (userDelete.userId !== parseInt(res.locals.user.id)) {
+          if (userDelete.dataValues.id !== res.locals.user.id) {
             res.status(401).send('This is not you!!');
 
           } else {
