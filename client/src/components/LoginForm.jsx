@@ -1,41 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginForm = (props) => {
-  return(
-    <div className="login">
-      <h1>Work</h1>
-      <form onSubmit={props.onSubmit}>
-        <input
-        autocomplete="off"
-        className="input-login"
-        type="text"
-        onChange={props.handleChange}
-        id="email"
-        name="email"
-        value={props.email}
-        placeholder="Email"/>
-        <input
-        autocomplete="off"
-        className="input-login"
-        type="text"
-        onChange={props.handleChange}
-        id="password"
-        name="password"
-        value={props.password}
-        placeholder="Password"/>
-        </form>
+class LoginForm extends Component {
 
-      <button
-      className='button-login'
-      onClick={props.handleSubmit}
-      type="submit">
-      {props.buttonText}
-      </button>
+  async componentDidMount() {
+    const token = await localStorage.getItem('token');
+    token && this.props.history.push('/jobs');
+  }
 
-      <Link className='new-user' to="/register">New User</Link>
-    </div>
-  )
+  render() {
+    return(
+      <div className="login">
+        <h1>Work</h1>
+        <form onSubmit={this.props.onSubmit}>
+          <input
+          autocomplete="off"
+          className="input-login"
+          type="text"
+          onChange={this.props.handleChange}
+          id="email"
+          name="email"
+          value={this.props.email}
+          placeholder="Email"/>
+          <input
+          autocomplete="off"
+          className="input-login"
+          type="text"
+          onChange={this.props.handleChange}
+          id="password"
+          name="password"
+          value={this.props.password}
+          placeholder="Password"/>
+          </form>
+
+        <button
+        className='button-login'
+        onClick={this.props.handleSubmit}
+        type="submit">
+        {this.props.buttonText}
+        </button>
+
+        <Link className='new-user' to="/register">New User</Link>
+      </div>
+    )
+  }
 };
 
 export default LoginForm;

@@ -30,8 +30,8 @@ class UserProfile extends Component {
   }
 
   async componentDidMount() {
-    const id = this.props.match.params.id
-    const token = this.props.token
+    const id = this.props.match.params.id;
+    const token = await localStorage.getItem('token');
     const user = await getUser(id, token)
     this.setState({
       user
@@ -75,7 +75,7 @@ class UserProfile extends Component {
   async submitProfile(e) {
     e.preventDefault();
     const id = this.props.match.params.id;
-    const token = this.props.token;
+    const token = await localStorage.getItem('token');
     const data = this.state.job_title;
     await editUser(id, data, token);
     const user = await getUser(id, token)
@@ -88,9 +88,8 @@ class UserProfile extends Component {
   async submitBio(e) {
     e.preventDefault();
     const id = this.props.match.params.id
-    const token = this.props.token
+    const token = await localStorage.getItem('token');
     const data = this.state.bio
-    console.log(id)
     await editUser(id, data, token);
     const user = await getUser(id, token)
     this.setState({
@@ -99,37 +98,34 @@ class UserProfile extends Component {
     })
   }
 
-  handleConfirmDelete(e){
+  async handleConfirmDelete(e){
     e.preventDefault()
-    this.props.history.push(`/delete/${this.state.user.id}`)
+    const id = await localStorage.getItem('id');
+    this.props.history.push(`/delete/${id}`)
   }
 
   render() {
-    console.log(this.state.user);
     return (
     <div>
       <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
       <ProfilePicture {...this.props}
-      id={this.props.id}
-      token={this.props.token}/>
+        profile_pic={this.state.user.profile_pic}/>
       <JobTitle
-      buttonText="Edit"
-      handleToggleEdit={this.handleToggleEdit}
-      submitProfile={this.submitProfile}
-      isEditing={this.state.isEditingJobTitle}
-      job_title={this.state.user.job_title}
-      onChange={this.handleProfileChange}/>
+        buttonText="Edit"
+        handleToggleEdit={this.handleToggleEdit}
+        submitProfile={this.submitProfile}
+        isEditing={this.state.isEditingJobTitle}
+        job_title={this.state.user.job_title}
+        onChange={this.handleProfileChange}/>
       <Available />
       <Bio
-      isEditing={this.state.isEditingBio}
-      handleToggleEdit={this.handleToggleBioEdit}
-      onChange={this.handleBioChange}
-      submitProfile={this.submitBio}
-      bio={this.state.user.bio}/>
-      <Cv
-      {...this.props}
-      id={this.props.id}
-      token={this.props.token}/>
+        isEditing={this.state.isEditingBio}
+        handleToggleEdit={this.handleToggleBioEdit}
+        onChange={this.handleBioChange}
+        submitProfile={this.submitBio}
+        bio={this.state.user.bio}/>
+      <Cv {...this.props}
+          cv={this.state.user.cv}/>
       <button
       onClick={this.handleConfirmDelete}
       >Delete Profile</button>
