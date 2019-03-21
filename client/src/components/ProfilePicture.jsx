@@ -52,7 +52,7 @@ export default class ProfilePicture extends React.Component {
     return (
     <form>
 
-      <div className="profileImg">
+      <div className="profileImg" style={{backgroundImage: "url(" + this.state.uploadedFile + ")"}}>
       <Dropzone
         onDrop={acceptedFiles => {
           this.onImageDrop(acceptedFiles);

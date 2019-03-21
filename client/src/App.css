@@ -216,6 +216,9 @@ padding: 50px;
   margin-left: 50%;
   margin-top: auto 0;
   border: 1px solid #DCDCDC;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 p {
