@@ -234,8 +234,7 @@ class App extends Component {
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-            <Nav id={this.state.id} />
-            <button onClick={this.handleLogout}>Logout</button>
+            <Nav id={this.state.id} onClick={this.handleLogout}/>
             <JobSearchForm
               jobsArray={this.state.jobsArray}
               renderedJobsArray={this.state.renderedJobsArray}
@@ -266,8 +265,8 @@ class App extends Component {
 
         <Route exact path='/user/:id' render={(props) => (
           <>
-          <Nav id={this.state.id} />
-          <button onClick={this.handleLogout}>Logout</button>
+
+          <Nav id={this.state.id} onClick={this.handleLogout}/>
           <UserProfile
           {...props}
           id={this.state.id}

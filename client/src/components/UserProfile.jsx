@@ -108,10 +108,12 @@ class UserProfile extends Component {
     console.log(this.state.user);
     return (
     <div>
-      <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
+    <div className="userHeader">
+      <h2 className="userName">{this.state.user.first_name} {this.state.user.last_name}</h2>
       <ProfilePicture {...this.props}
       id={this.props.id}
       token={this.props.token}/>
+    </div>
       <JobTitle
       buttonText="Edit"
       handleToggleEdit={this.handleToggleEdit}
