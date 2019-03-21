@@ -55,7 +55,7 @@ export default class ProfilePicture extends React.Component {
 
    async componentDidMount(){
      const { id, token } = this.props
-     const user = await getUser( id, token)
+     const user = await getUser(id, token)
    }
 
 
