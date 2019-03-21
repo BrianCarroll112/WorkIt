@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+
 class LoginForm extends Component {
 
   async componentDidMount() {
@@ -14,7 +15,7 @@ class LoginForm extends Component {
         <h1>Work</h1>
         <form onSubmit={this.props.onSubmit}>
           <input
-          autocomplete="off"
+          autoComplete="off"
           className="input-login"
           type="text"
           onChange={this.props.handleChange}
