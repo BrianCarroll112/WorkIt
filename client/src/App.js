@@ -41,8 +41,6 @@ class App extends Component {
       companiesArray: [],
       currentJob: {},
       currentCompany: {},
-      token: null,
-      id: null,
       showJob: true,
       showCompany: false,
     }
@@ -86,10 +84,10 @@ class App extends Component {
         password: '',
         first_name: '',
         last_name:''
-      },
-      token: data.token,
-      id: data.id
+      }
     })
+    await localStorage.setItem('token', data.token);
+    await localStorage.setItem('id', data.id);
     this.props.history.push(`/user/${data.id}`);
   };
 
@@ -103,14 +101,15 @@ class App extends Component {
         email: '',
         password: '',
       },
-      token: data.token,
-      id: data.id
     }))
+    await localStorage.setItem('token', data.token);
+    await localStorage.setItem('id', data.id);
     this.props.history.push(`/jobs`);
   }
 
   async getJobs() {
-    const jobsArray = await getJobs(this.state.token);
+    const token = await localStorage.getItem('token');
+    const jobsArray = await getJobs(token);
     this.setState({
       jobsArray,
       renderedJobsArray: jobsArray
@@ -118,7 +117,8 @@ class App extends Component {
   }
 
   async getCompanies() {
-    const companiesArray = await getCompanies(this.state.token);
+    const token = await localStorage.getItem('token');
+    const companiesArray = await getCompanies(token);
     this.setState({
       companiesArray
     })
@@ -162,21 +162,15 @@ class App extends Component {
     })
   }
 
-  handleLogout() {
-    this.setState({
-      token: null
-    })
+  async handleLogout() {
+    await localStorage.clear();
     this.props.history.push(`/`)
   }
 
   async deleteUserProfile() {
-    let id = this.state.id
-    let token = this.state.token
-    await deleteUser(id, token)
-    this.setState({
-      token: null,
-      id: null,
-    })
+    const token = await localStorage.getItem('token');
+    const id = await localStorage.getItem('id');
+    await deleteUser(id, token);
     this.props.history.push(`/`)
   }
 
@@ -196,10 +190,10 @@ class App extends Component {
     })
   }
 
-  handleApplyRedirect(e) {
+  async handleApplyRedirect(e) {
     e.preventDefault()
-
-    this.props.history.push(`/application/${this.state.id}`)
+    const id = await localStorage.getItem('id');
+    this.props.history.push(`/application/${id}`)
   }
 
   render() {
@@ -235,8 +229,8 @@ class App extends Component {
 
         <Route exact path="/jobs" render={(props) => (
           <div>
-            <Nav id={this.state.id} />
-            <button onClick={this.handleLogout}>Logout</button>
+
+            <Nav onClick={this.handleLogout}/>
             <JobSearchForm
               jobsArray={this.state.jobsArray}
               renderedJobsArray={this.state.renderedJobsArray}
@@ -267,12 +261,9 @@ class App extends Component {
 
         <Route exact path='/user/:id' render={(props) => (
           <>
-          <Nav id={this.state.id} />
+          <Nav onClick={this.handleLogout}/>
           <button onClick={this.handleLogout}>Logout</button>
-          <UserProfile
-          {...props}
-          id={this.state.id}
-          token={this.state.token}/>
+          <UserProfile {...props} />
           </>
         )} />
 
@@ -284,14 +275,12 @@ class App extends Component {
         )}  />
 
         <Route exact path='/application/:id' render={(props) => (
-          <ApplicationProfile
-          token={this.state.token}
-          id={this.state.id}/>
+          <ApplicationProfile {...props} />
         )}  />
 
         <Route exact path='/sent' render={(props) => (
           <>
-          <Nav id={this.state.id} />
+          <Nav onClick={this.handleLogout}/>
           <ApplicationSent />
           </>
         )}  />
