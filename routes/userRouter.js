@@ -62,12 +62,6 @@ userRouter.get('/:id', restrict, async (req, res) => {
            cv,
            profile_pic,
            bio,
-           job_title,
-           first_name,
-           last_name,
-           created_at,
-           updated_at,
-           company_id,
            ...user
          } = createdUser.dataValues;
 
@@ -110,9 +104,11 @@ userRouter.get('/:id', restrict, async (req, res) => {
 
             const user = {
               email,
+              first_name,
+              last_name,
+              job_title,
               id
             };
-            
             const token = await encode(user);
             res.json({
               token,
