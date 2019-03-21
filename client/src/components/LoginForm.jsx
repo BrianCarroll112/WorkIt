@@ -3,35 +3,37 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = (props) => {
   return(
-    <div>
-      <h2>Login Form</h2>
+    <div className="login">
+      <h1>Work</h1>
       <form onSubmit={props.onSubmit}>
-      <label htmlFor="email">
-        Email:
-      </label>
-      <input
+        <input
+        autocomplete="off"
+        className="input-login"
         type="text"
         onChange={props.handleChange}
         id="email"
         name="email"
-        value={props.email} />
-      <label htmlFor="password">
-        Password:
-      </label>
-      <input
+        value={props.email}
+        placeholder="Email"/>
+        <input
+        autocomplete="off"
+        className="input-login"
         type="text"
         onChange={props.handleChange}
         id="password"
         name="password"
-        value={props.password} />
-    </form>
-    <button
-      className='create'
+        value={props.password}
+        placeholder="Password"/>
+        </form>
+
+      <button
+      className='button-login'
       onClick={props.handleSubmit}
       type="submit">
       {props.buttonText}
-    </button>
-      <Link to="/register">New User</Link>
+      </button>
+
+      <Link className='new-user' to="/register">New User</Link>
     </div>
   )
 };

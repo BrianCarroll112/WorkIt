@@ -96,7 +96,8 @@ class App extends Component {
   async handleLogin(e) {
     e.preventDefault();
     const data = await loginUser(this.state.loginData)
-    data === undefined ? alert('Invalid Email or Password- try again') :
+    console.log(data)
+    data === '' ? alert('Invalid Email or Password- try again') :
       this.setState(prevState => ({
       loginData: {
         email: '',
@@ -204,9 +205,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Work it works</h1>
 
         <Route exact path="/" render={(props) => (
+          <div>
           <LoginForm
           {...props}
           buttonText="Sign In"
@@ -215,6 +216,7 @@ class App extends Component {
           password={this.state.loginData.password}
           handleSubmit={this.handleLogin}
           />
+          </div>
         )}/>
 
         <Route exact path="/register" render={(props) => (

@@ -1,0 +1,82 @@
+/* biue: #1500ff
+red: #FF0000
+grey: #DCDCDC */
+
+/* <link href=“https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans%7CRoboto” rel=“stylesheet”>
+font-family: ‘Roboto’, sans-serif;
+font-family: ‘Montserrat’, sans-serif;
+font-family: ‘Open Sans’, sans-serif; */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:600|Roboto:500');
+
+html {
+  background-color: #1500ff;
+  color: white;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 4.7em 12em;
+  font-family: ‘Roboto’, sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: ‘Open Sans’, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 7em;
+  margin-bottom: 0.2em;
+}
+
+.input-login {
+  border: none;
+  appearance: none;
+  width: 50%;
+  margin: 0.7em 0;
+  font-size: 2em;
+  color: white;
+  background-color: #1500ff;
+  border-color: #1500ff;
+  border-bottom: 1px solid white;
+}
+
+.input-login:focus{
+  outline: none;
+}
+
+::placeholder {
+  color: white;
+}
+
+.button-login {
+  width: 50%;
+  margin: 2em 0 0.7em;
+  font-size: 1.5em;
+  color: white;
+  border: 1px solid white;
+  background-color: #1500ff;
+  border-radius: 0.2em;
+}
+
+.button-login:hover{
+  background-color: white;
+  color: grey;
+}
+
+
+.new-user {
+  margin: 1.2em 0;
+  font-size: 1.5em;
+  color: white;
+}
+
+.new-user:hover{
+  color: lightgrey;
+}
