@@ -7,7 +7,7 @@ const LoginForm = (props) => {
       <h1>Work</h1>
       <form onSubmit={props.onSubmit}>
         <input
-        autocomplete="off"
+        autoComplete="off"
         className="input-login"
         type="text"
         onChange={props.handleChange}
@@ -16,7 +16,7 @@ const LoginForm = (props) => {
         value={props.email}
         placeholder="Email"/>
         <input
-        autocomplete="off"
+        autoComplete="off"
         className="input-login"
         type="text"
         onChange={props.handleChange}

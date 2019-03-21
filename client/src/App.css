@@ -8,6 +8,7 @@ font-family: ‘Montserrat’, sans-serif;
 font-family: ‘Open Sans’, sans-serif; */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:600|Roboto:500');
+@import url('https://fonts.googleapis.com/css?family=Monoton|Orbitron:700');
 
 html {
   background-color: #1500ff;
@@ -28,7 +29,7 @@ form {
 }
 
 h1 {
-  font-family: ‘Open Sans’, sans-serif;
+  font-family: ‘Montserrat’, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 7em;
@@ -42,22 +43,24 @@ h1 {
   margin: 0.7em 0;
   font-size: 2em;
   color: white;
+  font-family: ‘Open Sans’, sans-serif;
   background-color: #1500ff;
   border-color: #1500ff;
   border-bottom: 1px solid white;
 }
 
-.input-login:focus{
+.input-login:focus, .input-reg:focus{
   outline: none;
 }
 
 ::placeholder {
   color: white;
+  font-family: ‘Open Sans’, sans-serif;
 }
 
 .button-login {
   width: 50%;
-  margin: 2em 0 0.7em;
+  margin: 1.5em 0 0.7em 0em;
   font-size: 1.5em;
   color: white;
   border: 1px solid white;
@@ -67,7 +70,7 @@ h1 {
 
 .button-login:hover{
   background-color: white;
-  color: grey;
+  color: #1500ff;
 }
 
 
@@ -79,4 +82,78 @@ h1 {
 
 .new-user:hover{
   color: lightgrey;
+}
+
+.reg-page {
+  margin: 1em 6.7em;
+}
+
+.register-top{
+  margin-top: 0.4em;
+  margin-bottom: 0.1em;
+  font-size: 6em;
+}
+
+.reg-whole {
+  display: flex;
+  justify-content: space-between;
+  height: 33em;
+}
+
+.register-form{
+  border: 1px solid #DCDCDC;
+  width: 900%;
+  margin-top: 0.6em;
+}
+
+.register {
+  display: flex;
+  justify-content: space-between;
+}
+
+label{
+  font-size: 2em;
+  color: white;
+  font-family: ‘Open Sans’, sans-serif;
+  padding: 1.6em 0em 0em 2em;
+}
+
+.input-reg{
+  border: none;
+  appearance: none;
+  width: 60%;
+  margin: 1em 2em 0.7em 1em;
+  font-size: 2em;
+  color: white;
+  font-family: ‘Open Sans’, sans-serif;
+  background-color: #1500ff;
+  border-color: #1500ff;
+  border-bottom: 1px solid white;
+  padding-top: 0.4em;
+}
+
+.button-reg{
+  width: 50%;
+  margin: 2.4em 0 1.6em 3.7em;
+  font-size: 1.5em;
+  color: white;
+  border: 1px solid white;
+  background-color: #1500ff;
+  border-radius: 0.2em;
+}
+
+.button-reg:hover{
+  background-color: #dafc1c;
+  color: black;
+}
+
+.hey{
+  font-family: ‘Montserrat’, sans-serif;
+  margin: -2.5rem 1rem;
+  font-size: 15em;
+  color: #dafc1c;
+}
+
+.letter{
+  margin: -5rem 0em;
 }

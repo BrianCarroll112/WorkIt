@@ -215,6 +215,7 @@ class App extends Component {
           email={this.state.loginData.email}
           password={this.state.loginData.password}
           handleSubmit={this.handleLogin}
+          onSubmit={this.handleLogin}
           />
           </div>
         )}/>
