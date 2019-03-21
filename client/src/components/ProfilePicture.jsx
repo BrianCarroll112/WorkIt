@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import FilesBase64 from 'react-file-base64';
-import { editUser, getUser, uploadPhotoApi } from '../services/apiHelpers';
+import { editUser, getUser} from '../services/apiHelpers';
 
 const CLOUDINARY_UPLOAD_PRESET = 'divs4zmo';
 const CLOUDINARY_UPLOAD_URL = 'http://api.cloudinary.com/v1_1/di3ne3vdv/image/upload'
@@ -14,10 +14,8 @@ export default class ProfilePicture extends React.Component {
      this.state = {
        filepath: '',
        uploadedFile: null,
-       uploadedFileCloudinaryUrl: ''
      };
      this.onImageDrop = this.onImageDrop.bind(this)
-     this.handleImageUpload = this.handleImageUpload.bind(this)
    }
 
    getFiles(filepath) {
@@ -42,11 +40,7 @@ export default class ProfilePicture extends React.Component {
      })
    }
 
-   async handleImageUpload(file){
-     let resp = await uploadPhotoApi(file);
-   }
-
-   async saveProfil(){
+ async saveProfil(){
      const id = this.props.match.params.id;
      const token = this.props.token;
      const data = {profile_pic: this.state.uploadedFile};
@@ -58,9 +52,6 @@ export default class ProfilePicture extends React.Component {
      const user = await getUser(id, token)
    }
 
-
-
-
   render(){
     return (
     <form>
@@ -68,8 +59,8 @@ export default class ProfilePicture extends React.Component {
       <Dropzone
         onDrop={acceptedFiles => {
           this.onImageDrop(acceptedFiles);
-
         }}
+
         multiple={false}>
         {({getRootProps, getInputProps, isDragActive}) => {
           return (
