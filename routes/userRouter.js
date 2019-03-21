@@ -24,6 +24,9 @@ userRouter.get('/:id', restrict, async (req, res) => {
         const user = await User.findByPk(id);
         const {
           password_digest,
+          cv,
+          profile_pic,
+          bio,
           ...userData
         } = user.dataValues
 
@@ -59,6 +62,9 @@ userRouter.get('/:id', restrict, async (req, res) => {
         const createdUser = await User.create(newUser);
          const {
            password_digest,
+           cv,
+           profile_pic,
+           bio,
            ...user
          } = createdUser.dataValues;
 
