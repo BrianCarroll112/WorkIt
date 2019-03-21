@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import FilesBase64 from 'react-file-base64';
-import { uploadPhotoApi } from '../services/apiHelpers';
+import { editUser, getUser, uploadPhotoApi } from '../services/apiHelpers';
 
-class ProfilePicture extends Component {
-  constructor(){
-  super();
+class Cv extends Component {
+  constructor(props){
+  super(props);
   this.state = {
       filepath: ''
     }
@@ -14,11 +14,25 @@ class ProfilePicture extends Component {
     this.setState({
       filepath: filepath
     });
+    this.saveCv();
     console.log(filepath);
   }
 
   async handleUpload(){
     await uploadPhotoApi(this.state.filepath.base64);
+
+  }
+
+  async saveCv(){
+    const id = this.props.match.params.id;
+    const token = this.props.token;
+    const data = {cv:this.state.filepath.base64};
+    await editUser(id, data, token)
+  }
+
+  async componentDidMount(){
+    const { id, token } = this.props
+    const user = await getUser(id, token)
   }
 
   render(){
@@ -34,4 +48,4 @@ class ProfilePicture extends Component {
   }
 };
 
-export default ProfilePicture;
+export default Cv;

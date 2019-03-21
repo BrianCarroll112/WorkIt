@@ -126,7 +126,10 @@ class UserProfile extends Component {
       onChange={this.handleBioChange}
       submitProfile={this.submitBio}
       bio={this.state.user.bio}/>
-      <Cv />
+      <Cv
+      {...this.props}
+      id={this.props.id}
+      token={this.props.token}/>
       <button
       onClick={this.handleConfirmDelete}
       >Delete Profile</button>
