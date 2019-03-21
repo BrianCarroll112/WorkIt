@@ -14,10 +14,8 @@ class ApplicationProfile extends Component {
   }
 
   async componentDidMount(){
-    const id = this.props.match.params.id
-    const token = this.props.token
-    console.log(id)
-    console.log(token)
+    const id = await localStorage.get('id');
+    const token = await localStorage.get('token');
     const user = await getUser(id, token)
     this.setState({
       user
@@ -30,7 +28,6 @@ class ApplicationProfile extends Component {
   }
 
   render(){
-    console.log(this.state.user)
     return(
     <div>
         <div>{this.state.user.first_name} {this.state.last_name}</div>

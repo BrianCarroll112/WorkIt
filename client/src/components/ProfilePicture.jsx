@@ -3,13 +3,9 @@ import Dropzone from 'react-dropzone';
 import FilesBase64 from 'react-file-base64';
 import { editUser, getUser} from '../services/apiHelpers';
 
-const CLOUDINARY_UPLOAD_PRESET = 'divs4zmo';
-const CLOUDINARY_UPLOAD_URL = 'http://api.cloudinary.com/v1_1/di3ne3vdv/image/upload'
-
-
 export default class ProfilePicture extends React.Component {
   constructor(props) {
-     super(props);
+     super(props)
 
      this.state = {
        filepath: '',
@@ -22,7 +18,6 @@ export default class ProfilePicture extends React.Component {
    this.setState({
      filepath: filepath
    });
-   console.log(filepath);
  }
 
   getBase64(item, cb) {
@@ -41,14 +36,15 @@ export default class ProfilePicture extends React.Component {
    }
 
  async saveProfil(){
-     const id = this.props.match.params.id;
-     const token = this.props.token;
+     const id = await localStorage.getItem('id');
+     const token = await localStorage.getItem('token');
      const data = {profile_pic: this.state.uploadedFile};
      await editUser(id, data, token);
    }
 
    async componentDidMount(){
-     const { id, token } = this.props
+     const id = await localStorage.getItem('id');
+     const token = await localStorage.getItem('token');
      const user = await getUser(id, token)
    }
 
@@ -75,7 +71,7 @@ export default class ProfilePicture extends React.Component {
             )
           }}
       </Dropzone>
-      <img className="actlImg" src={this.state.uploadedFile} alt=''/>
+      <img className="actlImg" src={this.props.profile_pic ? this.props.profile_pic : this.state.uploadedFile} alt=''/>
       </div>
   </form>
     )

@@ -15,7 +15,6 @@ class Cv extends Component {
       filepath: filepath
     });
     this.saveCv();
-    console.log(filepath);
   }
 
   async handleUpload(){
@@ -24,21 +23,22 @@ class Cv extends Component {
   }
 
   async saveCv(){
-    const id = this.props.match.params.id;
-    const token = this.props.token;
+    const id = await localStorage.getItem('id');
+    const token = await localStorage.getItem('token');
     const data = {cv:this.state.filepath.base64};
     await editUser(id, data, token)
   }
 
   async componentDidMount(){
-    const { id, token } = this.props
+    const id = await localStorage.getItem('id');
+    const token = await localStorage.getItem('token');
     const user = await getUser(id, token)
   }
 
   render(){
     return(
     <div>
-    <embed src={this.state.filepath.base64} width="400" height="300"/>
+    <embed src={this.props.cv ? this.props.cv : this.state.filepath.base64} width="400" height="300"/>
     <form>
       <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
       <button type='submit' onClick={this.handleUpload}> upload </button>

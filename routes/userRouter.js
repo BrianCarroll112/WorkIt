@@ -71,8 +71,8 @@ userRouter.get('/:id', restrict, async (req, res) => {
           id: createdUser.dataValues.id
         });
       } catch (e) {
-        console.log(e);
-        res.status(500).send(e.message);
+        console.error(e);
+        res.status(500).json(e.message);
       }
     });
 
@@ -118,7 +118,7 @@ userRouter.get('/:id', restrict, async (req, res) => {
         }
       } catch (e) {
         console.log(e);
-        res.status(401).send('Invalid Credentials');
+        res.status(401).json(e.message);
       }
     });
 
