@@ -24,9 +24,6 @@ userRouter.get('/:id', restrict, async (req, res) => {
         const user = await User.findByPk(id);
         const {
           password_digest,
-          cv,
-          profile_pic,
-          bio,
           ...userData
         } = user.dataValues
 
@@ -65,6 +62,12 @@ userRouter.get('/:id', restrict, async (req, res) => {
            cv,
            profile_pic,
            bio,
+           job_title,
+           first_name,
+           last_name,
+           created_at,
+           updated_at,
+           company_id,
            ...user
          } = createdUser.dataValues;
 
@@ -107,14 +110,9 @@ userRouter.get('/:id', restrict, async (req, res) => {
 
             const user = {
               email,
-              first_name,
-              last_name,
-              profile_pic,
-              cv,
-              bio,
-              job_title,
               id
             };
+            
             const token = await encode(user);
             res.json({
               token,
