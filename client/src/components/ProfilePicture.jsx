@@ -51,7 +51,8 @@ export default class ProfilePicture extends React.Component {
   render(){
     return (
     <form>
-      <div>
+
+      <div className="profileImg">
       <Dropzone
         onDrop={acceptedFiles => {
           this.onImageDrop(acceptedFiles);
@@ -64,13 +65,13 @@ export default class ProfilePicture extends React.Component {
             <input {...getInputProps()} />
               { isDragActive ?
                 <p>''</p> :
-                <p> Drag 'n' drop some files here, or click to select files </p>
+                <p> Drag 'n' drop image <br/> or click to select files </p>
               }
             </div>
             )
           }}
       </Dropzone>
-      <img src={this.props.profile_pic ? this.props.profile_pic : this.state.uploadedFile} alt=''/>
+      <img className="actlImg" src={this.props.profile_pic ? this.props.profile_pic : this.state.uploadedFile} alt=''/>
       </div>
   </form>
     )

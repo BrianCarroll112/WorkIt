@@ -107,9 +107,11 @@ class UserProfile extends Component {
   render() {
     return (
     <div>
-      <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
+    <div className="userHeader">
+      <h2 className="userName">{this.state.user.first_name} {this.state.user.last_name}</h2>
       <ProfilePicture {...this.props}
-        profile_pic={this.state.user.profile_pic}/>
+      profile_pic={this.state.user.profile_pic}/>
+      </div>
       <JobTitle
         buttonText="Edit"
         handleToggleEdit={this.handleToggleEdit}
