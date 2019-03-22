@@ -333,7 +333,10 @@ p {
 }
 
 .jobs-or-company{
-  width: 70%
+  width: 70%;
+  position: sticky;
+  top: 5px;
+  height: 0;
 }
 
 .job-results{
@@ -360,4 +363,58 @@ h6{
   font-family: ‘Roboto’, sans-serif;
   font-size: 1.4em;
   margin-top: 0.3em;
+}
+
+h2{
+  margin: 0px auto;
+  font-family: ‘Montserrat’, sans-serif;
+  font-size: 3em;
+  text-transform: uppercase;
+}
+
+h3{
+  margin-top: 0.4em;
+  font-family: ‘Montserrat’, sans-serif;
+  font-size: 2.7em;
+  text-decoration: underline;
+}
+
+.job-header{
+  margin: 3em 0em 0em 3.4em;
+}
+
+.blurb{
+  text-align: right;
+  margin-right: 2.5em;
+  font-family: ‘Roboto’, sans-serif;
+  font-size: 2em;
+}
+
+.job-description{
+  font-family: ‘Roboto’, sans-serif;
+  font-size: 1.2em;
+  margin: 1em 3.4em;
+  text-align: justify;
+}
+
+.job-buttons {
+  width: 50%;
+  margin: 0.5em;
+  font-size: 1.5em;
+  color: #1500ff;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 0.2em;
+}
+
+.job-buttons:hover{
+  background-color: #dafc1c;
+  color: black;
+}
+
+.alljob-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 3.4em;
 }

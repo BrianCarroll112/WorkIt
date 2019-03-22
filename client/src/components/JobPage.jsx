@@ -7,20 +7,33 @@ const JobPage = (props) => {
     <div>
       {props.showJob === true ?
       <div>
+      <div className="job-header">
       <h2>{job_title}</h2>
       <h3>{name} - {location}</h3>
-      <p>FT/PT: {employee_status}</p>
-      <p>Salary: {salary}</p>
-      <p>Experience: {experience_level}</p>
-      <p>{description}</p>
+      </div>
+
+      <div className="blurb">
+      <div>{employee_status}</div>
+      <div>Salary: {salary}</div>
+      <div>Experience: {experience_level}</div>
+      </div>
+
+      <p className="job-description">{description}</p>
+
+      <div className="alljob-buttons">
+
       <button
+      className="job-buttons"
       onClick={props.show}
       >Show more about {name}
       </button>
       <button
+      className="job-buttons"
       onClick={props.apply}>
       Apply
       </button>
+      </div>
+
       </div> : null}
     </div>
   )
