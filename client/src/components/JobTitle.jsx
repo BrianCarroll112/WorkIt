@@ -23,8 +23,8 @@ const JobTitle = (props) => {
         </button>
       </div> :
       <div>
-        {props.job_title === '' ?
-          <div>Add Job Title</div> :
+        {props.job_title === 'Add a job'  || props.job_title === 'Choose One'?
+          <div>Profession</div> :
           <div>{props.job_title}</div>}
         <button
         onClick={props.handleToggleEdit}>
