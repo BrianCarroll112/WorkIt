@@ -41,7 +41,6 @@ class Cv extends Component {
       <embed src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv } width="400" height="300"/>
       <form>
        <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
-       <button type='submit' onClick={this.handleUpload}> upload </button>
       </form>
     </div>
     )
