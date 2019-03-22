@@ -1,6 +1,8 @@
 /* biue: #1500ff
 red: #FF0000
-grey: #DCDCDC */
+grey: #DCDCDC
+yellow: #dafc1c */
+
 
 /* <link href=“https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans%7CRoboto” rel=“stylesheet”>
 font-family: ‘Roboto’, sans-serif;
@@ -49,7 +51,7 @@ h1 {
   border-bottom: 1px solid white;
 }
 
-.input-login:focus, .input-reg:focus{
+.input-login:focus, .input-reg:focus, {
   outline: none;
 }
 
@@ -240,4 +242,122 @@ p {
   height: 300px;
   margin-top: -26%;
   display: none;
+}
+
+.job-page{
+  display: flex;
+  flex-direction: column;
+}
+
+.jobshow-block{
+  display: flex;
+}
+
+.search-page{
+  display: flex;
+  border: 1px solid white;
+  height: 5em;
+}
+
+.search-filters{
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  margin-left:2em;
+}
+
+.button-filters{
+  display: flex;
+  flex-direction: column;
+  margin-right: 3em;
+  width: 20%;
+  justify-content: center;
+}
+
+.select-filters{
+  width: 100%;
+  margin: 0em 0.2em;
+  height: 60%;
+  align-self: center;
+  font-family: ‘Open Sans’, sans-serif;
+  font-size: 16px;
+  background-color: #1500ff;
+  border: 1px solid white;
+  color: white;
+}
+
+.select-filters:hover{
+  background-color: #dafc1c;
+  color: black;
+}
+
+.salary-filter{
+  border: none;
+  appearance: none;
+  width: 100%;
+  margin: 0em 0.5em 0em 0.2em;
+  height: 55%;
+  align-self: center;
+  font-family: ‘Open Sans’, sans-serif;
+  font-size: 16px;
+  background-color: #1500ff;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0.3em;
+}
+
+.click-filters {
+  margin: 0.2em 0em;
+  height: 2em;
+  border-radius: 0.2em;
+  color: #1500ff;
+}
+
+.click-filters:hover, .salary-filter:hover{
+  background-color: #dafc1c;
+  color: black;
+}
+
+.salary-filter:hover::placeholder{
+  color: black;
+}
+
+.salary-filter:focus{
+  background-color: #dafc1c;
+  color: black;
+}
+
+.jobs-list{
+  border-right: 1px solid white;
+  width: 30%
+}
+
+.jobs-or-company{
+  width: 70%
+}
+
+.job-results{
+  border-bottom: 1px solid white;
+  height:100%;
+  height: 8em;
+  padding: 2em 2em;
+}
+
+.job-results:hover{
+  background-color: #dafc1c;
+  color: black;
+}
+
+h5{
+  margin: 0px auto;
+  font-family: ‘Montserrat’, sans-serif;
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+h6{
+  margin: 0px auto;
+  font-family: ‘Roboto’, sans-serif;
+  font-size: 1.4em;
+  margin-top: 0.3em;
 }
