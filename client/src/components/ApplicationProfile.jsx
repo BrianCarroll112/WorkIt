@@ -14,8 +14,8 @@ class ApplicationProfile extends Component {
   }
 
   async componentDidMount(){
-    const id = await localStorage.get('id');
-    const token = await localStorage.get('token');
+    const id = await localStorage.getItem('id');
+    const token = await localStorage.getItem('token');
     const user = await getUser(id, token)
     this.setState({
       user

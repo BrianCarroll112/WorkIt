@@ -262,7 +262,6 @@ class App extends Component {
         <Route exact path='/user/:id' render={(props) => (
           <>
           <Nav onClick={this.handleLogout}/>
-          <button onClick={this.handleLogout}>Logout</button>
           <UserProfile {...props} />
           </>
         )} />
