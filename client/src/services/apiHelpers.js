@@ -13,7 +13,6 @@ const registerUser = async (data) => {
     email,
     password
   });
-  console.log(resp.data)
   return resp.data
 };
 
@@ -23,7 +22,6 @@ const loginUser = async (data) => {
     email,
     password
   });
-  console.log(resp.data);
   return resp.data;
 }
 
@@ -33,7 +31,6 @@ const getUser = async (id, token) => {
       Authorization: `Bearer ${token}`
     }
   });
-  console.log(resp.data);
   return resp.data
 }
 
@@ -43,7 +40,6 @@ const getJobs = async (token) => {
       Authorization: `Bearer ${token}`
     }
   });
-  console.log(resp.data);
   return resp.data
 }
 
@@ -53,7 +49,6 @@ const getCompanies = async (token) => {
       Authorization: `Bearer ${token}`
     }
   });
-  console.log(resp.data);
   return resp.data
 }
 
@@ -61,7 +56,6 @@ const editUser = async (id, data, token) => {
   const resp = await axios.put(`${BASE_URL}/user/${id}`,
   data, { headers: { Authorization: `Bearer ${token}` } }
 );
-  console.log(resp.data);
   return resp.data
 };
 
@@ -71,7 +65,6 @@ const deleteUser = async (id, token) => {
       Authorization: `Bearer ${token}`
     }
   });
-  console.log(resp.data);
   return resp.data
 }
 
@@ -81,7 +74,6 @@ const baseURL = 'https://api.cloudinary.com/v1_1/di3ne3vdv/image/upload';
   });
 
 const uploadPhotoApi = async (data) => {
-  console.log(`triggered with ${data}`);
     let resp = await cloudinaryApi.post('' ,
     {
       file: data,

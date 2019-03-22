@@ -25,8 +25,6 @@ class JobSearchForm extends Component {
     job_title ? array = array.filter(job => job.job_title === this.state.job_title): console.log(array);
     location ? array = array.filter(job => job.location === this.state.location): console.log(array);
     salary ? array = array.filter(job => job.salary >= this.state.salary): console.log(array);
-    console.log('props', this.props);
-    console.log('array', array);
     await this.props.setRenderedArray(array)
     this.props.setFirstView();
   }

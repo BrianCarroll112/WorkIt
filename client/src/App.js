@@ -95,7 +95,6 @@ class App extends Component {
   async handleLogin(e) {
     e.preventDefault();
     const data = await loginUser(this.state.loginData)
-    console.log(data)
     data === '' ? alert('Invalid Email or Password- try again') :
       this.setState(prevState => ({
       loginData: {

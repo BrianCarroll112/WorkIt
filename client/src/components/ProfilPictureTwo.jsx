@@ -14,7 +14,6 @@ class ProfilePicture extends Component {
     this.setState({
       filepath: filepath
     });
-    console.log(filepath);
   }
 
   async handleUpload(){

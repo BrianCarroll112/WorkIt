@@ -1,7 +1,6 @@
 import React from 'react';
 
 const JobTitle = (props) => {
-  console.log(props)
   return(
     <div>
     {props.isEditing !== false ?
