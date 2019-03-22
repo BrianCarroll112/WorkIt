@@ -20,6 +20,7 @@ import Nav from './components/Nav';
 import DeleteReroute from './components/DeleteReroute';
 import ApplicationProfile from './components/ApplicationProfile';
 import ApplicationSent from './components/ApplicationSent';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor() {
@@ -292,7 +293,7 @@ class App extends Component {
           <ApplicationSent />
           </>
         )}  />
-
+        <Footer />
       </div>
     );
   }

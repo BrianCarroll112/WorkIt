@@ -107,6 +107,7 @@ class UserProfile extends Component {
   render() {
     return (
     <div>
+    <button className="deleteUser" onClick={this.handleConfirmDelete}> delete account </button>
     <div className="userHeader">
       <ProfilePicture {...this.props}
       profile_pic={this.state.user.profile_pic}/>
@@ -127,7 +128,7 @@ class UserProfile extends Component {
           bio={this.state.user.bio}/>
         <Cv {...this.props}
             cv={this.state.user.cv}/>
-          <button onClick={this.handleConfirmDelete}> DELETE ACCOUNT </button>
+
     </div>
     );
   }

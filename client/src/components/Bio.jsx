@@ -9,8 +9,8 @@ const Bio = (props) => {
 
         <textarea className="bioArea"
         name='bio'
+        placeholder='tell a bit about yourself...'
         onChange={props.onChange} />
-
 
       </form>
       <button className="submitBio"
@@ -19,16 +19,20 @@ const Bio = (props) => {
       </button>
 
       </div> :
-      <div class="totalBio">
+
+      <div>
         {props.bio === 'Add a bio'?
-        <div>Tell a bit about yourself...</div> :
+        <div className="existBio">Add a short bio </div> :
         <div className="existBio">{props.bio}</div>}
+
         <button className="editBio"
         onClick={props.handleToggleEdit}>
         {props.buttonText}
         Edit
         </button>
+
       </div>}
+
     </div>
   )
 }

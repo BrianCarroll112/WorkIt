@@ -174,13 +174,15 @@ h2 {
     letter-spacing: 1px;
 }
 
+
 nav {
   margin-left: 7%;
   margin-top: 3%;
+  padding-bottom: 1%;
   margin-bottom: 1%;
   margin-right: 7%;
   display: flex;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #DCDCDC;
 }
 
 .links {
@@ -219,15 +221,16 @@ padding: 50px;
 
 .userHeader{
   display: flex;
+  margin-top: 5%;
 }
 
 .profileImg {
   border-radius: 50%;
   width: 300px;
   height: 300px;
-  margin-left: 80%;
+  margin-left: 75%;
   margin-top: auto 0;
-  border: 1px solid #DCDCDC;
+  border: 3px solid #dafc1c;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -255,7 +258,7 @@ p {
 }
 
 .userName {
-margin-left: 27%;
+margin-left: 28%;
 margin-top: 12%;
 margin-bottom: 0;
 padding-bottom: 0;
@@ -266,13 +269,13 @@ text-transform: uppercase;
 
 .userHeader {
   border-bottom: 1px solid white;
-  max-width: 1200px;
-  margin-left: 5%;
+  width: 1100px;
+  margin-left: 15%;
 }
 
 .menumnue{
 display: flex;
-margin-left: 45%;
+margin-left: 43%;
 margin-top: 20px;
 }
 
@@ -286,7 +289,7 @@ margin-top: 20px;
   background-color: #1500ff;
   border-color: #1500ff;
   border: 1px solid white;
-  max-width: 550px;
+  width: 250px;
   text-align: center;
   margin-top: 33%;
   padding: 5px;
@@ -316,12 +319,12 @@ margin-top: 20px;
   border-color: #1500ff;
   border: 1px solid white;
   border-radius: 15%;
-  margin-top: 23px;
+  margin-top: 27px;
   margin-left: -2px;
 }
 
 .editTitle:hover {
-  background-color: #DCDCDC;
+  background-color: #DAFC1C;
   color:#1500ff;
 }
 
@@ -335,8 +338,8 @@ margin-top: 20px;
   border-color: #1500ff;
   /* border: 1px solid white; */
   border-radius: 15%;
-  margin-top: 14%;
-  margin-left: -103px;
+  margin-top: 16%;
+  margin-left: -150px;
   /* padding: 3px; */
   border-color: #1500ff;
   border: 1px solid white;
@@ -345,36 +348,41 @@ margin-top: 20px;
 }
 
 .submitJob:hover{
-  background-color: #DCDCDC;
+  background-color: #DAFC1C;
   color: #1500ff;
 }
 
 .jobTitle1{
   text-align: center;
   font-size: 32px;
-  margin-top: 2%;
-  color: white;
+  margin-top: 6%;
+  color: #DAFC1C;
+  text-transform: uppercase;
+  font-weight: 600;
   margin-left: 50px;
 }
 .bio {
-  display: flex;
+  /* display: flex; */
 }
 
 .bioArea {
-  margin-top: 8%;
+  justify-content: center;
+  margin-top: 5%;
   background-color: #1500ff;
   color: white;
   resize: none;
-  width: 800px;
-  height: 200px;
+  width: 400px;
+  height: 600px;
   align-content: center;
   font-size: 18px;
-  margin-left: 47%;
+  margin-left: 17%;
   border: 1px solid #DCDCDC;
 }
 
 .bioArea::placeholder{
   color: #DCDCDC;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .submitBio{
@@ -387,7 +395,8 @@ margin-top: 20px;
   border-color: #1500ff;
   border: 1px solid white;
   border-radius: 15%;
-  margin-left: 47%;
+  margin-left: 17%;
+  margin-top: 15px;
 }
 
 .totalBio{
@@ -398,7 +407,24 @@ margin-top: 20px;
   border: 1px solid #DCDCDC;
 }
 
-.editbio {
+.existBio{
+  justify-content: center;
+  margin-top: 5%;
+  background-color: #1500ff;
+  color: white;
+  resize: none;
+  width: 400px;
+  height: 600px;
+  align-content: center;
+  font-size: 18px;
+  padding: 2px;
+  color: #DCDCDC;
+  margin-left: 19%;
+  border-right: 1px solid #dafc1c;
+  background-color: #261bf7;
+}
+
+.editBio {
   border: none;
   appearance: none;
   font-size: 16px;
@@ -408,8 +434,8 @@ margin-top: 20px;
   border-color: #1500ff;
   border: 1px solid white;
   border-radius: 15%;
-  margin-left: 47%;
-  margin-top: 30%;
+  margin-left: 17%;
+  margin-top: 15px;
 }
 
 .app-profile-container {
@@ -654,4 +680,60 @@ h3{
   flex-direction: column;
   align-items: flex-end;
   margin-right: 3.4em;
+}
+
+.pdf{
+  margin-left: 30%;
+  margin-top: -3%;
+}
+
+.uploadCv {
+  border: none;
+  appearance: none;
+  background-color: #1500ff;
+  border-color: #1500ff;
+}
+
+.embedCV {
+  margin-top: -60%;
+  margin-left: 43%;
+  border: 2px solid #dafc1c;
+}
+
+input {
+  width: 50%;
+  padding-left: 10px;
+  font-size: 18px;
+  color: #DCDCDC;
+  background-color: transparent !important;
+  margin-left: 52%;
+  margin-top: 2%;
+  max-width: 250px;
+  margin-bottom: 10%;
+}
+
+.deleteUser {
+  border: none;
+  appearance: none;
+  width: 50%;
+  font-size: 14px;
+  color: white;
+  font-family: ‘Open Sans’, sans-serif;
+  background-color: #1500ff;
+  border-color: #1500ff;
+  margin-left: 64%;
+  color: #DCDCDC;
+}
+
+.deleteUser:hover {
+  background-color: #FF0000;
+  color: white;
+  width: 160px;
+  margin-left: 84%;
+}
+
+.footer{
+  border-top: 1px dotted #DCDCDC;
+  margin-left: 45%;
+  padding-bottom: 1%;
 }

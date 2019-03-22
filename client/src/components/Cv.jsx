@@ -32,10 +32,12 @@ class Cv extends Component {
   render(){
     return(
     <div className="pdf">
-      <embed src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv} width="400" height="300"/>
-      <form>
-       <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
-      </form>
+
+    <embed className="embedCV" src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv } width="400" height="600"/>
+    <form className="inputCV">
+      <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
+      <button className="uploadCv" type='submit' onClick={this.handleUpload}> </button>
+    </form>
     </div>
     )
   }
