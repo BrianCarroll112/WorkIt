@@ -26,7 +26,7 @@ const JobTitle = (props) => {
       </div> :
       <div className="jobTitle1">
         {props.job_title === 'Add a job' || props.job_title === 'Choose One'?
-          <p className="jobTitle">Add Your Profession</p> :
+          <div className="jobTitle">Add Your Profession</div> :
           <div>{props.job_title}</div>}
         <button className="editTitle"
         onClick={props.handleToggleEdit}>

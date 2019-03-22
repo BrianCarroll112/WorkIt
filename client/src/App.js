@@ -272,10 +272,13 @@ class App extends Component {
         )} />
 
         <Route exact path='/delete/:id' render={(props) => (
+          <>
+          <Nav onClick={this.handleLogout}/>
           <DeleteReroute
           {...props}
           deleteUser={this.deleteUserProfile}
            />
+           </>
         )}  />
 
         <Route exact path='/application/:id' render={(props) => (
