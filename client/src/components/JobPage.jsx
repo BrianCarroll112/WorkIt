@@ -18,10 +18,9 @@ const JobPage = (props) => {
       <div>Experience: {experience_level}</div>
       </div>
 
-      <p className="job-description">{description}</p>
+      <div className="job-description">{description}</div>
 
       <div className="alljob-buttons">
-
       <button
       className="job-buttons"
       onClick={props.show}

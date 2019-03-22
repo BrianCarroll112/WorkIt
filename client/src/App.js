@@ -171,6 +171,7 @@ class App extends Component {
     const token = await localStorage.getItem('token');
     const id = await localStorage.getItem('id');
     await deleteUser(id, token);
+    await localStorage.clear();
     this.props.history.push(`/`)
   }
 
@@ -272,10 +273,13 @@ class App extends Component {
         )} />
 
         <Route exact path='/delete/:id' render={(props) => (
+          <>
+          <Nav onClick={this.handleLogout}/>
           <DeleteReroute
           {...props}
           deleteUser={this.deleteUserProfile}
            />
+           </>
         )}  />
 
         <Route exact path='/application/:id' render={(props) => (

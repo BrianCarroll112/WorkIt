@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
         <input
         className="input-reg"
         autoComplete="off"
-        type="text"
+        type="password"
         onChange={props.handleChange}
         id="password"
         name="password"

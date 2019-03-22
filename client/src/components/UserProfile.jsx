@@ -107,26 +107,28 @@ class UserProfile extends Component {
   render() {
     return (
     <div>
+    <button className="deleteUser" onClick={this.handleConfirmDelete}> delete account </button>
     <div className="userHeader">
       <ProfilePicture {...this.props}
       profile_pic={this.state.user.profile_pic}/>
       <h2 className="userName">{this.state.user.first_name} {this.state.user.last_name}</h2>
       </div>
-      <JobTitle
-        buttonText="Edit"
-        handleToggleEdit={this.handleToggleEdit}
-        submitProfile={this.submitProfile}
-        isEditing={this.state.isEditingJobTitle}
-        job_title={this.state.user.job_title}
-        onChange={this.handleProfileChange}/>
-      <Bio
-        isEditing={this.state.isEditingBio}
-        handleToggleEdit={this.handleToggleBioEdit}
-        onChange={this.handleBioChange}
-        submitProfile={this.submitBio}
-        bio={this.state.user.bio}/>
-      <Cv {...this.props}
-          cv={this.state.user.cv}/>
+        <JobTitle
+          buttonText="Edit"
+          handleToggleEdit={this.handleToggleEdit}
+          submitProfile={this.submitProfile}
+          isEditing={this.state.isEditingJobTitle}
+          job_title={this.state.user.job_title}
+          onChange={this.handleProfileChange}/>
+        <Bio
+          isEditing={this.state.isEditingBio}
+          handleToggleEdit={this.handleToggleBioEdit}
+          onChange={this.handleBioChange}
+          submitProfile={this.submitBio}
+          bio={this.state.user.bio}/>
+        <Cv {...this.props}
+            cv={this.state.user.cv}/>
+
     </div>
     );
   }

@@ -10,7 +10,7 @@ const Company = (props) => {
       <h3>{location}</h3>
       </div>
 
-      <p className="job-description">{about}</p>
+      <div className="job-description">{about}</div>
 
       <div className="alljob-buttons">
       <button

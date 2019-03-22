@@ -38,7 +38,7 @@ class Cv extends Component {
   render(){
     return(
     <div className="pdf">
-    <embed className="embedCV" src={this.props.cv ? this.props.cv : this.state.filepath.base64} width="400" height="600"/>
+    <embed className="embedCV" src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv } width="400" height="600"/>
     <form className="inputCV">
       <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
       <button className="uploadCv" type='submit' onClick={this.handleUpload}> </button>
