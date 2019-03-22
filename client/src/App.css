@@ -362,6 +362,7 @@ margin-top: 20px;
   align-content: center;
   font-size: 18px;
   margin-left: 47%;
+  border: 1px solid #DCDCDC;
 }
 
 .bioArea::placeholder{
