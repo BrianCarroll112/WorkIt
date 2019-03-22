@@ -46,13 +46,16 @@ export default class ProfilePicture extends React.Component {
      const id = await localStorage.getItem('id');
      const token = await localStorage.getItem('token');
      const user = await getUser(id, token)
+     this.setState({
+       user
+     })
    }
 
   render(){
     return (
     <form>
 
-      <div className="profileImg" style={{backgroundImage: "url(" + this.state.uploadedFile + ")"}}>
+      <div className="profileImg" style={{backgroundImage: `url(${this.state.uploadedFile ? this.state.uploadedFile : this.props.profile_pic}`}}>
       <Dropzone
         onDrop={acceptedFiles => {
           this.onImageDrop(acceptedFiles);

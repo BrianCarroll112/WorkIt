@@ -7,9 +7,8 @@ class Cv extends Component {
   super(props);
   this.state = {
       filepath: ''
-    }
   }
-
+}
     getFiles(filepath) {
     this.setState({
       filepath: filepath
@@ -17,16 +16,11 @@ class Cv extends Component {
     this.saveCv();
   }
 
-  async handleUpload(){
-    await uploadPhotoApi(this.state.filepath.base64);
-
-  }
-
   async saveCv(){
     const id = await localStorage.getItem('id');
     const token = await localStorage.getItem('token');
     const data = {cv:this.state.filepath.base64};
-    await editUser(id, data, token)
+    const user = await editUser(id, data, token)
   }
 
   async componentDidMount(){
@@ -38,7 +32,7 @@ class Cv extends Component {
   render(){
     return(
     <div className="pdf">
-      <embed src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv } width="400" height="300"/>
+      <embed src={this.state.filepath.base64 ? this.state.filepath.base64 : this.props.cv} width="400" height="300"/>
       <form>
        <FilesBase64 multiple={false} onDone={this.getFiles.bind(this)} />
       </form>

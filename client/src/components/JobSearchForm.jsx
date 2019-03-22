@@ -34,7 +34,7 @@ class JobSearchForm extends Component {
   render() {
     return(
       <div className='search-page'>
-        <form className='search-filters' onSubmit={(e) => this.handleSubmit(e)}>
+        <form className='search-filters' >
           <select className='select-filters' name="job_title" onChange={(e) => this.handleChange(e)}>
             <option className="job-option" value={null}>Select Job Title</option>
             <option className="job-option" value="Web Developer">Web Developer</option>
@@ -48,9 +48,9 @@ class JobSearchForm extends Component {
             <option className="job-option" value="Denver, CO"> Denver </option>
           </select>
           <input className='salary-filter' value={null} placeholder="Minimum Salary" name="salary" type="number" onChange={(e) => this.handleChange(e)} />
-        </form>
+      </form>
         <div className="button-filters">
-          <button className='click-filters' type="submit" value="Filter">Filter</button>
+          <button onClick={(e) => this.handleSubmit(e)} className='click-filters' type="submit" value="Filter">Filter</button>
           <button className='click-filters' onClick={(props) => {
             this.props.getJobs()
             this.props.setFirstView()}}>Reset</button>
