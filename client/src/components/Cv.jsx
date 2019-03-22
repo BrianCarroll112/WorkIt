@@ -27,6 +27,11 @@ class Cv extends Component {
     const id = await localStorage.getItem('id');
     const token = await localStorage.getItem('token');
     const user = await getUser(id, token)
+    this.setState({
+      filepath: {
+        base64: user.cv
+      }
+    })
   }
 
   render(){
