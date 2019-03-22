@@ -105,13 +105,12 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(this.state.user.job_title)
     return (
     <div>
     <div className="userHeader">
-      <h2 className="userName">{this.state.user.first_name} {this.state.user.last_name}</h2>
       <ProfilePicture {...this.props}
       profile_pic={this.state.user.profile_pic}/>
+      <h2 className="userName">{this.state.user.first_name} {this.state.user.last_name}</h2>
       </div>
       <JobTitle
         buttonText="Edit"
@@ -120,7 +119,6 @@ class UserProfile extends Component {
         isEditing={this.state.isEditingJobTitle}
         job_title={this.state.user.job_title}
         onChange={this.handleProfileChange}/>
-      <Available />
       <Bio
         isEditing={this.state.isEditingBio}
         handleToggleEdit={this.handleToggleBioEdit}
@@ -129,10 +127,6 @@ class UserProfile extends Component {
         bio={this.state.user.bio}/>
       <Cv {...this.props}
           cv={this.state.user.cv}/>
-      <button
-      onClick={this.handleConfirmDelete}
-      >Delete Profile</button>
-
     </div>
     );
   }

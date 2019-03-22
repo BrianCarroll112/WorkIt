@@ -2,29 +2,29 @@ import React from 'react';
 
 const Bio = (props) => {
   return (
-    <div>
+    <div className="bio">
       {props.isEditing !== false ?
       <div>
       <form onSubmit={props.onSubmit}>
 
-        <textarea
+        <textarea className="bioArea"
         name='bio'
         onChange={props.onChange} />
 
 
       </form>
-      <button
+      <button className="submitBio"
       onClick={props.submitProfile}>
-      Submit
+      Save
       </button>
 
       </div> :
+      <div class="totalBio">
 
-      <div>
-        {props.bio === ''?
-        <div>Add Bio</div> :
-        <div>{props.bio}</div>}
-        <button
+        {props.bio === 'Add a bio'?
+        <div>Tell a bit about yourself...</div> :
+        <div className="existBio">{props.bio}</div>}
+        <button className="editBio"
         onClick={props.handleToggleEdit}>
         {props.buttonText}
         Edit

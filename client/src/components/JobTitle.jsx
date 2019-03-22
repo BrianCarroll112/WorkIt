@@ -6,8 +6,9 @@ const JobTitle = (props) => {
     <div>
     {props.isEditing !== false ?
       <div>
+      <div class="menumnue">
         <form onSubmit={props.onSubmit}>
-          <select
+          <select className="jobMenu"
           onChange={props.onChange}
           id="job_title"
           name="job_title"
@@ -17,16 +18,17 @@ const JobTitle = (props) => {
             <option name="job_title" value="Web Developer">Web Developer</option>
           </select>
         </form>
-        <button
+        <button className="submitJob"
         onClick={props.submitProfile}>
-        Submit
+        Save
         </button>
+      </div>
       </div> :
-      <div>
-        {props.job_title === 'Add a job'  || props.job_title === 'Choose One'?
-          <div>Profession</div> :
+      <div className="jobTitle1">
+        {props.job_title === 'Add a job' || props.job_title === 'Choose One'?
+          <p className="jobTitle">Add Your Profession</p> :
           <div>{props.job_title}</div>}
-        <button
+        <button className="editTitle"
         onClick={props.handleToggleEdit}>
         {props.buttonText}
         </button>
