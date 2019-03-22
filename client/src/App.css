@@ -194,7 +194,7 @@ a {
   font-family: 'open sans';
 }
 
-a:hover {
+a:hover, .logout:hover {
   color: grey;
 }
 
