@@ -105,6 +105,7 @@ class UserProfile extends Component {
   }
 
   render() {
+    console.log(this.state.user.bio);
     return (
     <div>
     <div className="userHeader">
@@ -119,7 +120,6 @@ class UserProfile extends Component {
         isEditing={this.state.isEditingJobTitle}
         job_title={this.state.user.job_title}
         onChange={this.handleProfileChange}/>
-      <Available />
       <Bio
         isEditing={this.state.isEditingBio}
         handleToggleEdit={this.handleToggleBioEdit}

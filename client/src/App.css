@@ -221,7 +221,7 @@ padding: 50px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 p {
@@ -308,7 +308,11 @@ margin-top: 20px;
   border-radius: 15%;
   margin-top: 23px;
   margin-left: -2px;
+}
 
+.editTitle:hover {
+  background-color: #DCDCDC;
+  color:#1500ff;
 }
 
 .submitJob{
@@ -327,6 +331,12 @@ margin-top: 20px;
   border-color: #1500ff;
   border: 1px solid white;
   border-radius: 15%;
+  margin-bottom: 5%;
+}
+
+.submitJob:hover{
+  background-color: #DCDCDC;
+  color: #1500ff;
 }
 
 .jobTitle1{
@@ -335,5 +345,59 @@ margin-top: 20px;
   margin-top: 2%;
   color: white;
   margin-left: 50px;
+}
+.bio {
+  display: flex;
+}
 
+.bioArea {
+  margin-top: 8%;
+  background-color: #1500ff;
+  color: white;
+  resize: none;
+  width: 800px;
+  height: 200px;
+  align-content: center;
+  font-size: 18px;
+  margin-left: 47%;
+}
+
+.bioArea::placeholder{
+  color: #DCDCDC;
+}
+
+.submitBio{
+  border: none;
+  appearance: none;
+  font-size: 16px;
+  color: white;
+  font-family: ‘Open Sans’, sans-serif;
+  background-color: #1500ff;
+  border-color: #1500ff;
+  border: 1px solid white;
+  border-radius: 15%;
+  margin-left: 47%;
+}
+
+.totalBio{
+  margin-left: 30%;
+  margin-top: 8%;
+  width: 800px;
+  height: 200px;
+  border: 1px solid #DCDCDC;
+}
+
+
+.editbio {
+  border: none;
+  appearance: none;
+  font-size: 16px;
+  color: white;
+  font-family: ‘Open Sans’, sans-serif;
+  background-color: #1500ff;
+  border-color: #1500ff;
+  border: 1px solid white;
+  border-radius: 15%;
+  margin-left: 47%;
+  margin-top: 30%;
 }

@@ -24,7 +24,7 @@ const JobTitle = (props) => {
         </button>
       </div>
       </div> :
-      <div className="jobTitle">
+      <div className="jobTitle1">
         {props.job_title === 'Add a job' || props.job_title === 'Choose One'?
           <p className="jobTitle">Add Your Profession</p> :
           <div>{props.job_title}</div>}
