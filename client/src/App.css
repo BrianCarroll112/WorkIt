@@ -707,7 +707,7 @@ input {
   margin-left: 52%;
   margin-top: 2%;
   max-width: 250px;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
 }
 
 .deleteUser {
@@ -728,4 +728,10 @@ input {
   color: white;
   width: 160px;
   margin-left: 84%;
+}
+
+.footer{
+  border-top: 1px dotted #DCDCDC;
+  margin-left: 45%;
+  padding-bottom: 1%;
 }
