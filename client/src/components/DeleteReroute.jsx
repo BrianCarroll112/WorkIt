@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { Route, Link } from 'react-router-dom';
 
 const DeleteReroute = (props) => {
   return(
@@ -11,4 +13,4 @@ const DeleteReroute = (props) => {
   )
 }
 
-export default DeleteReroute;
+export default withRouter(DeleteReroute);
