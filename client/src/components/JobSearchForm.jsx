@@ -33,26 +33,28 @@ class JobSearchForm extends Component {
 
   render() {
     return(
-      <div>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <select name="job_title" onChange={(e) => this.handleChange(e)}>
-            <option value={null}>Select Job Title</option>
-            <option value="Web Developer">Web Developer</option>
-            <option value="Software Engineer">Software Engineer</option>
+      <div className='search-page'>
+        <form className='search-filters' onSubmit={(e) => this.handleSubmit(e)}>
+          <select className='select-filters' name="job_title" onChange={(e) => this.handleChange(e)}>
+            <option className="job-option" value={null}>Select Job Title</option>
+            <option className="job-option" value="Web Developer">Web Developer</option>
+            <option className="job-option" value="Software Engineer">Software Engineer</option>
           </select>
-          <select name="location" onChange={(e) => this.handleChange(e)}>
-            <option value={null}> Select Location </option>
-            <option value="New York, NY"> NYC </option>
-            <option value="Boston, MA"> Boston </option>
-            <option value="Denver, CO"> Denver </option>
+
+          <select className='select-filters' name="location" onChange={(e) => this.handleChange(e)}>
+            <option className="job-option" value={null}> Select Location </option>
+            <option className="job-option" value="New York, NY"> NYC </option>
+            <option className="job-option" value="Boston, MA"> Boston </option>
+            <option className="job-option" value="Denver, CO"> Denver </option>
           </select>
-          <input value={null} placeholder="Minimum Salary" name="salary" type="number" onChange={(e) => this.handleChange(e)} />
-          <input type="submit" value="Filter"/>
+          <input className='salary-filter' value={null} placeholder="Minimum Salary" name="salary" type="number" onChange={(e) => this.handleChange(e)} />
         </form>
-        <button onClick={(props) => {
+        <div className="button-filters">
+          <button className='click-filters' type="submit" value="Filter">Filter</button>
+          <button className='click-filters' onClick={(props) => {
             this.props.getJobs()
-            this.props.setFirstView()}}
-        >Reset</button>
+            this.props.setFirstView()}}>Reset</button>
+        </div>
       </div>
     )
   }

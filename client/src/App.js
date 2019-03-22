@@ -228,8 +228,7 @@ class App extends Component {
         )}/>
 
         <Route exact path="/jobs" render={(props) => (
-          <div>
-
+          <div className="job-page">
             <Nav onClick={this.handleLogout}/>
             <JobSearchForm
               jobsArray={this.state.jobsArray}
@@ -237,6 +236,8 @@ class App extends Component {
               setRenderedArray={this.setRenderedArray}
               getJobs={this.getJobs}
               setFirstView={this.setFirstView}/>
+            <div className="jobshow-block">
+            <div className="jobs-list">
             <JobsList
               getJobs={this.getJobs}
               getCompanies={this.getCompanies}
@@ -245,6 +246,8 @@ class App extends Component {
               companiesArray={this.state.companiesArray}
               showJob={this.showJob}
               setFirstView={this.setFirstView}/>
+            </div>
+            <div className="jobs-or-company">
             <JobPage
               currentJob={this.state.currentJob}
               currentCompany={this.state.currentCompany}
@@ -256,13 +259,14 @@ class App extends Component {
               showCompany={this.state.showCompany}
               show={this.toggleHideCompany}
               apply={this.handleApplyRedirect}/>
+            </div>
+            </div>
           </div>
         )}/>
 
         <Route exact path='/user/:id' render={(props) => (
           <>
           <Nav onClick={this.handleLogout}/>
-          <button onClick={this.handleLogout}>Logout</button>
           <UserProfile {...props} />
           </>
         )} />
