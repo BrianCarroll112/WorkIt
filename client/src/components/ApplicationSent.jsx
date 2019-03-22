@@ -2,7 +2,7 @@ import React from 'react';
 
 const ApplicationSent = () => {
   return(
-    <div>
+    <div className="app-sent-container">
       <div>Your Application has been sent!</div>
       <div>Good Luck!</div>
     </div>
