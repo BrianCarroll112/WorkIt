@@ -233,7 +233,6 @@ p {
 
 }
 
-
 .actlImg {
   border: 1px solid #DCDCDC;
   display: block;
@@ -242,6 +241,65 @@ p {
   height: 300px;
   margin-top: -26%;
   display: none;
+}
+
+.app-profile-container {
+  display: flex;
+  justify-content:space-around;
+  margin-top: 25px;
+}
+
+.app-profile-container p {
+  margin: 20px;
+}
+
+.app-profile-container textarea {
+  margin-left:50px;
+}
+
+.app-profile-inner-container {
+  display:flex;
+  align-items:space-around;
+  flex-direction: column;
+  margin-left:150px;
+  margin-top:-25px;
+}
+
+.app-profile-container embed {
+  height: 441px;
+  margin-right: 150px;
+}
+
+.app-profile-bio {
+  margin-top:15px;
+  margin-bottom:7%;
+  width: 50%;
+  text-align: center;
+  margin-left:50px;
+}
+h5 {
+  text-align:center
+}
+
+.app-profile-button {
+    width: 25%;
+    margin: 1.5em 0 0.7em 0em;
+    font-size: 1em;
+    color: white;
+    border: 1px solid white;
+    background-color: #1500ff;
+    border-radius: 0.2em;
+    margin-right:1.1em;
+    margin-left:.1em
+  }
+
+.app-profile-button-container {
+  padding-left:8%;
+}
+
+.app-profile-button:hover {
+   background-color: #dafc1c;
+  color: black;
 }
 
 .job-page{
@@ -349,6 +407,14 @@ p {
 .job-results:hover{
   background-color: #dafc1c;
   color: black;
+}
+.app-profile-textarea::placeholder {
+  color: #DCDCDC;
+}
+
+.app-sent-container {
+  text-align: center;
+  margin-top:5%;
 }
 
 h5{
