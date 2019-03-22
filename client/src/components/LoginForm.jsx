@@ -24,9 +24,9 @@ class LoginForm extends Component {
           value={this.props.email}
           placeholder="Email"/>
           <input
-          autocomplete="off"
+          autoComplete="off"
           className="input-login"
-          type="text"
+          type="password"
           onChange={this.props.handleChange}
           id="password"
           name="password"
