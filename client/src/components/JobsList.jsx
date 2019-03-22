@@ -23,8 +23,8 @@ class JobsList extends Component {
         key={job.id}
         id={job.id}
         onClick={this.props.showJob}>
-         <h5>{job.experience_level} {job.job_title}</h5>
-         <h6>{company ? company.name : 'Company Name'} - {job.location}</h6>
+         <div className='noth5'>{job.experience_level} {job.job_title}</div>
+         <div className='noth6'>{company ? company.name : 'Company Name'} - {job.location}</div>
         </div>
       )})}
     </div>

@@ -409,6 +409,7 @@ margin-top: 20px;
   border-radius: 15%;
   margin-left: 47%;
   margin-top: 30%;
+}
 
 .app-profile-container {
   display: flex;
@@ -586,14 +587,14 @@ h5 {
   font-weight: 100;
 }
 
-h5{
+.noth5{
   margin: 0px auto;
   font-family: ‘Montserrat’, sans-serif;
   font-size: 2em;
   text-decoration: underline;
 }
 
-h6{
+.noth6{
   margin: 0px auto;
   font-family: ‘Roboto’, sans-serif;
   font-size: 1.4em;
