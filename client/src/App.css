@@ -360,6 +360,7 @@ margin-top: 20px;
   align-content: center;
   font-size: 18px;
   margin-left: 47%;
+  border: 1px solid #DCDCDC;
 }
 
 .bioArea::placeholder{
@@ -386,7 +387,6 @@ margin-top: 20px;
   height: 200px;
   border: 1px solid #DCDCDC;
 }
-
 
 .editbio {
   border: none;
