@@ -5,12 +5,19 @@ const Company = (props) => {
   return (
     <div>{props.showCompany === true ?
       <div>
+      <div className="job-header">
       <h2><a target='_blank' rel="noopener noreferrer" href={link}>{name}</a></h2>
       <h3>{location}</h3>
-      <p>{about}</p>
+      </div>
+
+      <p className="job-description">{about}</p>
+
+      <div className="alljob-buttons">
       <button
+      className="job-buttons"
       onClick={props.show}
-      >Back to Job Posting{name}</button>
+      >Back to {name} Job Posting</button>
+      </div>
       </div> : null
     }
     </div>

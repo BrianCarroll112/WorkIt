@@ -105,7 +105,6 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log(this.state.user.bio);
     return (
     <div>
     <div className="userHeader">

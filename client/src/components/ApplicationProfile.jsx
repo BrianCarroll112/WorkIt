@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { getUser } from '../services/apiHelpers'
+import Nav from './Nav';
 
 class ApplicationProfile extends Component {
   constructor(props){
@@ -30,14 +31,22 @@ class ApplicationProfile extends Component {
   render(){
     return(
     <div>
-        <div>{this.state.user.first_name} {this.state.last_name}</div>
-        <div>{this.state.user.profile_pic}</div>
-        <div>{this.state.user.job_title}</div>
-        <div>{this.state.user.bio}</div>
-        <div>{this.state.user.cv}</div>
-        <button
-        onClick={this.handleSendApp}>Send Application</button>
+      <Nav/>
+    <div className="app-profile-container">
+      <div className="app-profile-inner-container">
+        <div className="app-profile-bio"><h4>Bio</h4>{this.state.user.bio}</div>
+        <textarea className="app-profile-textarea" style={{resize: 'none', overflow:'scroll', height:'100px', width:'50%', fontSize:'1.0em'}} placeholder="Add A Cover Letter!"></textarea>
+        <div className="app-profile-button-container">
+          <button className="app-profile-button"
+            onClick={() => this.props.history.push('/jobs')}>Cancel</button>
+          <button className="app-profile-button"
+            onClick={this.handleSendApp}>Send</button>
+        </div>
+      </div>
+      <embed src={this.state.user.cv}/>
     </div>
+  </div>
+
    )
  }
 }
