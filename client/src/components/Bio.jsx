@@ -20,7 +20,6 @@ const Bio = (props) => {
 
       </div> :
       <div class="totalBio">
-
         {props.bio === 'Add a bio'?
         <div>Tell a bit about yourself...</div> :
         <div className="existBio">{props.bio}</div>}
